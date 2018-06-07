@@ -1,15 +1,20 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
-@import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
 nav {
   background-color: black;
   margin: 0;
-  color: white
+  color: white;
 }
 
 nav > h1 {
   margin: 0;
+}
+
+button {
+  margin: 10px;
+  border-radius: 10px;
 }
 
 .navbar {
@@ -55,10 +60,11 @@ footer {
 .player.active {
   border: thick solid purple;
   font-weight: bold;
+  background-color: pink;
 }
 
 #player-turns {
-  margin: 20px 10px 20px 10px ;
+  margin: 20px 10px 20px 10px;
 }
 
 #game-board {
