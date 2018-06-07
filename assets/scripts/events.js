@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./store')
+const ui = require('./ui')
 
 // all event handlers
 const addHandlers = function () {
@@ -16,9 +17,12 @@ const restartGame = function (event) {
   // set player x active and player o inactive
   $('#player-x').addClass('active')
   $('#player-o').removeClass('active')
+  ui.showMessage('New Game!')
 }
 
 const playHere = function (event) {
+  // clear any previous messages
+  ui.clearMessage()
   console.log('Player ', store.currentTurn, ' selected cell ', event.target.id)
   // if cell was blank, add symbol of current player, then swap players
   if ($(event.target).html() === '') {
@@ -26,7 +30,7 @@ const playHere = function (event) {
     swapTurns()
   // if cell was occupied, log error and prevent play and turn swap
   } else {
-    console.log('That cell is already occupied. Try again!')
+    ui.showMessage('That cell is already occupied. Try again!')
   }
 }
 
