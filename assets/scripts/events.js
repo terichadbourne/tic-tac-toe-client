@@ -12,6 +12,8 @@ const addHandlers = function () {
 const restartGame = function (event) {
   // set current player to x
   store.currentTurn = 'x'
+  // clear out `store.cells` array
+  store.cells = ['', '', '', '', '', '', '', '', '']
   // empty out contents of all game cells
   $('.game-cell').html('')
   // set player x active and player o inactive
