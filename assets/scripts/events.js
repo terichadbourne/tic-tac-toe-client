@@ -23,10 +23,11 @@ const restartGame = function (event) {
 const playHere = function (event) {
   // clear any previous messages
   ui.clearMessage()
-  console.log('Player ', store.currentTurn, ' selected cell ', event.target.id)
-  // if cell was blank, add symbol of current player, then swap players
+  // if cell was blank, add symbol of current player to `store.cells` array,
+  // redisplay symbols on all cells, then swap players
   if ($(event.target).html() === '') {
-    $(event.target).html(store.currentTurn)
+    store.cells[event.target.id] = store.currentTurn
+    ui.displayCells()
     swapTurns()
   // if cell was occupied, log error and prevent play and turn swap
   } else {

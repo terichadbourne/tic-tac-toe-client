@@ -1,7 +1,8 @@
 'use strict'
 
 const store = {
-  currentTurn: 'x'
+  currentTurn: 'x',
+  cells: ['', '', '', '', '', '', '', '', '']
 }
 
 module.exports = store
