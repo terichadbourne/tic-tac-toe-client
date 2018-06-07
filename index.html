@@ -19,8 +19,14 @@
         <p>Authentication Stuff Here</p>
       </section>
       <section id='game' class="row">
-        <p>Player X: <span id="player-x-name">Teri</span><span class="turn-indicator">***<span><p>
-        <p>Player O: <span id="player-o-name">Joe</span><span class="turn-indicator"><span><p>
+        <div id='player-turns'>
+          <div id="player-x" class="player active">
+            <p>Player X: <span id="player-x-name">Teri</span></p>
+          </div>
+          <div id="player-o" class="player">
+            <p>Player O: <span id="player-o-name">Joe</span></p>
+          </div>
+        </div>
         <div id="game-board">
           <div class="row game-row">
             <div class="game-cell col-xs-4" id="0">0</div>

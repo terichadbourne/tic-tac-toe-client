@@ -40,6 +40,27 @@ footer {
   max-width: 300px;
 }
 
+.player {
+  height: 50px;
+  padding: 5px;
+  font-size: 24px;
+  font-weight: normal;
+  float: left;
+  border: solid purple;
+  border-radius: 10px;
+  margin: 20px 10px;
+  color: purple;
+}
+
+.player.active {
+  border: thick solid purple;
+  font-weight: bold;
+}
+
+#player-turns {
+  margin: 20px 10px 20px 10px ;
+}
+
 #game-board {
   margin: auto;
 }
