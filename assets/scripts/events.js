@@ -7,8 +7,13 @@ const addHandlers = function () {
 }
 
 const playHere = function (event) {
-  console.log('Clicked cell # (event.target.id): ', event.target.id)
-  swapTurns()
+  console.log('Player ', store.currentTurn, ' selected cell ', event.target.id)
+  if ($(event.target).html() === '') {
+    $(event.target).html(store.currentTurn)
+    swapTurns()
+  } else {
+    console.log('That cell is already occupied. Try again!')
+  }
 }
 
 const swapTurns = function () {
