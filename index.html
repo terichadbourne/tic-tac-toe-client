@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <title>Example</title>
+      <title>Tic Tac Toe</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
 
       <!-- Do not add `link` tags-->
@@ -11,7 +11,37 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body>
-      <h1>Browser Template</h1>
+    <body class="container-fluid">
+      <nav class="navbar navbar-light bg-light">
+        <h1>Tic Tac Toe</h1>
+      </nav>
+      <section id='authentication' class="row">
+        <p>Authentication Stuff Here</p>
+      </section>
+      <section id='game' class="row">
+        <p>Player X: <span id="player-x-name">Teri</span><span class="turn-indicator">***<span><p>
+        <p>Player O: <span id="player-o-name">Joe</span><span class="turn-indicator"><span><p>
+        <div id="game-board">
+          <div class="row game-row">
+            <div class="game-cell col-xs-4" id="0">0</div>
+            <div class="game-cell col-xs-4" id="1">1</div>
+            <div class="game-cell col-xs-4" id="2">2</div>
+          </div>
+          <div class="row game-row">
+            <div class="game-cell col-xs-4" id="3">3</div>
+            <div class="game-cell col-xs-4" id="4">4</div>
+            <div class="game-cell col-xs-4" id="5">5</div>
+          </div>
+          <div class="row game-row">
+            <div class="game-cell col-xs-4" id="6">6</div>
+            <div class="game-cell col-xs-4" id="7">7</div>
+            <div class="game-cell col-xs-4" id="8">8</div>
+          </div>
+        </div>
+      </section>
+      <footer class="row">
+        <p><em>Built by Teri Chadbourne</em><p>
+      </footer>
+      <h2>
     </body>
 </html>

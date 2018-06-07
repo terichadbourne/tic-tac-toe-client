@@ -1,2 +1,45 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+
+
+nav {
+  background-color: black;
+  margin: 0;
+  color: white
+}
+
+nav > h1 {
+  margin: 0;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+#authentication {
+  background-color: gray;
+}
+
+footer {
+  background-color: black;
+  color: white;
+}
+
+.game-cell {
+  background-color: pink;
+  color: black;
+  border: thin black solid;
+  min-height: 100px;
+  font-size: 50px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100px;
+}
+
+.game-row {
+  max-width: 300px;
+}
+
+#game-board {
+  margin: auto;
+}
