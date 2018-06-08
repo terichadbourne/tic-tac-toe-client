@@ -2,7 +2,10 @@
 
 const store = {
   currentTurn: 'x',
-  cells: ['', '', '', '', '', '', '', '', '']
+  cells: ['', '', '', '', '', '', '', '', ''],
+  over: false,
+  xWins: 0,
+  oWins: 0
 }
 
 module.exports = store

@@ -10,4 +10,5 @@ const events = require('./events')
 
 $(() => {
   events.addHandlers()
+  events.restartGame()
 })

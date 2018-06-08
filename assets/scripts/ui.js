@@ -18,9 +18,14 @@ const displayCells = function () {
     $(`#${index}`).html(element)
   })
 }
+const updateWins = function () {
+  $('#player-x-wins').html(store.xWins)
+  $('#player-o-wins').html(store.oWins)
+}
 
 module.exports = {
   showMessage: showMessage,
   clearMessage: clearMessage,
-  displayCells: displayCells
+  displayCells: displayCells,
+  updateWins: updateWins
 }
