@@ -24,6 +24,7 @@ const restartGame = function (event) {
   $('#player-o').removeClass('active')
   // set restart game button text
   $('#restart-game').html('Restart Game')
+  $('#restart-game').removeClass('rematch')
 }
 
 const playHere = function (event) {
@@ -81,17 +82,19 @@ const checkForWins = function () {
   // after looping, if a winner was found (value isn't null), alert win
   if (winner) {
     store.over = true
-    ui.showMessage(`Player ${winner} has won the game!`)
+    ui.showMessage(`Player ${winner.toUpperCase()} has won the game!`)
     store[`${winner}Wins`]++
     ui.updateWins()
     // set restart game button text
     $('#restart-game').html('Demand a rematch!')
+    $('#restart-game').addClass('rematch')
   // else if no winner but all cells full, alert draw
   } else if (store.cells.every(cellOccupied)) {
     store.over = true
     ui.showMessage("It's a draw! Click below to start a new game.")
     // set restart game button text
     $('#restart-game').html('Demand a rematch!')
+    $('#restart-game').addClass('rematch')
   // else continue with game
   } else {
     swapTurns()
