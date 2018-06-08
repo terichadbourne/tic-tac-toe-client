@@ -25,6 +25,8 @@ const restartGame = function (event) {
   ui.updateWins()
   // alert new game
   ui.showMessage('New Game!')
+  // set restart game button text
+  $('#restart-game').html('Restart Game')
 }
 
 const playHere = function (event) {
@@ -45,8 +47,7 @@ const playHere = function (event) {
     }
   // else if game is over, alert that
   } else {
-    console.log('This game has ended. Sorry.')
-    ui.showMessage('This game has ended. Sorry.')
+    ui.showMessage('This game is over. Click the button below for a rematch.')
   }
 }
 
@@ -58,8 +59,6 @@ const swapTurns = function () {
   } else if (store.currentTurn === 'o') {
     store.currentTurn = 'x'
     $('.player').toggleClass('active')
-  } else {
-    console.log('something went wrong in swapTurns')
   }
 }
 
@@ -70,27 +69,22 @@ const checkForWins = function () {
   let winner = null
   // loop through all potential winning lines...
   winningLines.forEach((winningLine) => {
-    console.log('now checking winningLine: ', winningLine)
     // write each cell value from this specific winningLine to an array
     const testArray = []
     winningLine.forEach((cell) => {
       testArray.push(store.cells[cell])
     })
-    console.log('testArray for this winningLine is ', testArray)
     // check if all values in the array are identical and NOT ''
     // if so, set winner variable to that value
     if (testArray[0] === testArray[1] && testArray[1] === testArray[2]) {
       if (testArray[0] !== '') {
         winner = testArray[0]
-        console.log(`found winner ${winner} while examinging winning line
-          ${winningLine} inside winningLines.forEach`)
       }
     }
   })
   // after looping, if a winner was found (value isn't null), alert win
   if (winner) {
     store.over = true
-    console.log(`Player ${winner} has won the game!`)
     ui.showMessage(`Player ${winner} has won the game!`)
     if (winner === 'x') {
       store.xWins++
@@ -98,19 +92,21 @@ const checkForWins = function () {
       store.oWins++
     }
     ui.updateWins()
+    // set restart game button text
+    $('#restart-game').html('Demand a rematch!')
   // else if no winner but all cells full, alert draw
   } else if (store.cells.every(cellOccupied)) {
     store.over = true
-    console.log(`Board is full without a winner. It's a draw.`)
-    ui.showMessage("It's a draw!")
+    ui.showMessage("It's a draw! Click below to start a new game.")
+    // set restart game button text
+    $('#restart-game').html('Demand a rematch!')
   // else continue with game
   } else {
-    console.log('No winner yet.')
     swapTurns()
   }
 }
 
-// callback function looks at a cell and returns true if it contains and x or o already
+// callback function returns true if a cell contains an x or o already
 const cellOccupied = (cell) => {
   return cell === 'x' || cell === 'o'
 }
