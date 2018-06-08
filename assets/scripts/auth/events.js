@@ -11,16 +11,6 @@ const addHandlers = function () {
   $('#sign-out-button').on('click', onSignOut)
 }
 
-const onSignUp = function (event) {
-  event.preventDefault()
-  console.log('clicked on signup button')
-  console.log('event.target of sign-up: ', event.target)
-  const data = getFormFields(event.target)
-  console.log('data in onSignUp is: ', data)
-  authApi.signUp(data)
-    .then(authUi.signUpSuccess)
-    .catch(authUi.signUpError)
-}
 // SIGN UP
 //
 // expected responses:
@@ -36,16 +26,21 @@ const onSignUp = function (event) {
 //
 // unsuccessful, HTTP Status of 400 Bad Request (empty body)
 
-const onSignIn = function (event) {
+const onSignUp = function (event) {
   event.preventDefault()
-  console.log('clicked on sign-in button')
-  console.log('event.target of sign-in: ', event.target)
+  console.log('clicked on signup button')
+  console.log('event.target of sign-up: ', event.target)
   const data = getFormFields(event.target)
-  console.log('data in onSignIn is: ', data)
-  authApi.signIn(data)
+  console.log('data in onSignUp is: ', data)
+  authApi.signUp(data)
+    // if signup is successful, immediately run signIn using same credentials
+    .then(() => { return authApi.signIn(data) })
+    // use the signInSuccess function if that works
     .then(authUi.signInSuccess)
-    .catch(authUi.signInError)
+    // if signup was not successful, use signUpError
+    .catch(authUi.signUpError)
 }
+
 // SIGN IN
 //
 // expected responses:
@@ -62,14 +57,17 @@ const onSignIn = function (event) {
 //
 // unsuccessful: HTTP Status of 401 Unauthorized (empty body)
 
-const onChangePassword = function (event) {
+const onSignIn = function (event) {
   event.preventDefault()
-  console.log('clicked on change password button')
-  console.log('event.target of change password: ', event.target)
+  console.log('clicked on sign-in button')
+  console.log('event.target of sign-in: ', event.target)
   const data = getFormFields(event.target)
-  console.log('data in onChangePassword is: ', data)
-  authApi.changePassword(data)
+  console.log('data in onSignIn is: ', data)
+  authApi.signIn(data)
+    .then(authUi.signInSuccess)
+    .catch(authUi.signInError)
 }
+
 // CHANGE PASSWORD
 //
 // expected responses:
@@ -78,13 +76,13 @@ const onChangePassword = function (event) {
 //
 // unsuccessful: HTTP status of 400 Bad Request (no body)
 
-const onSignOut = function (event) {
+const onChangePassword = function (event) {
   event.preventDefault()
-  console.log('clicked on sign-out button')
-  console.log('event.target of sign-out: ', event.target)
-  authApi.signOut()
-    .then(authUi.signOutSuccess)
-    .catch(authUi.signOutError)
+  console.log('clicked on change password button')
+  console.log('event.target of change password: ', event.target)
+  const data = getFormFields(event.target)
+  console.log('data in onChangePassword is: ', data)
+  authApi.changePassword(data)
 }
 
 // SIGN OUT
@@ -94,6 +92,15 @@ const onSignOut = function (event) {
 // successful: HTTP status of 204 No Content (no body)
 //
 // unsuccessful: HTTP status of 401 Unauthorized (no body)
+
+const onSignOut = function (event) {
+  event.preventDefault()
+  console.log('clicked on sign-out button')
+  console.log('event.target of sign-out: ', event.target)
+  authApi.signOut()
+    .then(authUi.signOutSuccess)
+    .catch(authUi.signOutError)
+}
 
 module.exports = {
   addHandlers: addHandlers,

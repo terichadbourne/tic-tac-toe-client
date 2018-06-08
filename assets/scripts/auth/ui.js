@@ -2,10 +2,6 @@
 
 const store = require('../store')
 
-const signUpSuccess = function (response) {
-  console.log('signUpSuccess is ', response)
-}
-
 const signUpError = function (error) {
   console.log('signUpError is', error)
 }
@@ -42,8 +38,11 @@ const signOutError = function (error) {
   console.log('signOutError is', error)
 }
 
+// TODO:
+// if no token present, options are sign in or sign up
+// if token present, options are sign out or change password
+
 module.exports = {
-  signUpSuccess: signUpSuccess,
   signUpError: signUpError,
   signInSuccess: signInSuccess,
   signInError: signInError,
