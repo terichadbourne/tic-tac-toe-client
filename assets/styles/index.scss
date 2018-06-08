@@ -15,6 +15,8 @@ nav > h1 {
 button {
   margin: 10px;
   border-radius: 10px;
+  border-color: purple;
+  color: purple;
 }
 
 .navbar {
@@ -34,15 +36,17 @@ footer {
   background-color: pink;
   color: black;
   border: thin black solid;
-  min-height: 100px;
+  height: 25vw;
+  width: 25vw;
   font-size: 50px;
   text-align: center;
   vertical-align: middle;
-  line-height: 100px;
+  line-height: 25vw;
 }
 
-.game-row {
-  max-width: 300px;
+.row {
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .player {
@@ -56,6 +60,10 @@ footer {
   color: purple;
 }
 
+.player > p {
+  margin: 0;
+}
+
 .player.active {
   border: thick solid purple;
   font-weight: bold;
@@ -67,6 +75,7 @@ footer {
 }
 
 #game-board {
+  width: 75vw;
   margin: auto;
 }
 
