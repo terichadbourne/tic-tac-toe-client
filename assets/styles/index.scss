@@ -2,29 +2,17 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-nav {
-  background-color: black;
-  margin: 0;
-  color: white;
-}
-
-nav > h1 {
-  margin: 0;
+body {
+  text-align: center;
 }
 
 button {
-  margin: 10px;
-  border-radius: 10px;
   border-color: purple;
+  border-radius: 10px;
   color: purple;
-}
-
-.navbar {
-  margin-bottom: 0;
-}
-
-#authentication {
-  background-color: gray;
+  display: block;
+  font-size: 16px;
+  margin: 10px auto;
 }
 
 footer {
@@ -32,16 +20,47 @@ footer {
   color: white;
 }
 
+nav {
+  background-color: black;
+  color: white;
+  margin: 0;
+}
+
+nav > h1 {
+  margin: 0;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
 .game-cell {
   background-color: pink;
-  color: black;
   border: thin black solid;
-  height: 25vw;
-  width: 25vw;
+  color: black;
   font-size: 50px;
+  height: 25vw;
+  line-height: 25vw;
   text-align: center;
   vertical-align: middle;
-  line-height: 25vw;
+  width: 25vw;
+}
+
+.navbar {
+  margin-bottom: 0;
+}
+
+
+.player {
+  border: thin solid purple;
+  border-radius: 20px;
+  color: purple;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: normal;
+  margin: 10px;
+  padding: 5px 15px;
+  text-align: center;
 }
 
 .row {
@@ -49,39 +68,29 @@ footer {
   margin-right: 0;
 }
 
-.player {
-  height: 50px;
-  padding: 5px;
-  font-size: 24px;
-  font-weight: normal;
-  border: solid purple;
-  border-radius: 10px;
-  margin: 20px 10px;
-  color: purple;
-}
-
-.player > p {
-  margin: 0;
+#player-turns > div {
+  text-align: center;
 }
 
 .player.active {
-  border: thick solid purple;
-  font-weight: bold;
   background-color: pink;
+  border: solid purple;
+  font-weight: bold;
 }
 
-#player-turns {
-  margin: 20px 10px 20px 10px;
+#authentication {
+  background-color: gray;
 }
 
 #game-board {
+  margin: 15px auto;
   width: 75vw;
-  margin: auto;
 }
 
 #message {
-  color: purple;
   border-radius: 5px;
-  padding: 5px;
+  color: purple;
   font-size: 18px;
+  padding: 5px;
+  text-align: center;
 }
