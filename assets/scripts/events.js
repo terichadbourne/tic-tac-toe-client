@@ -10,21 +10,18 @@ const addHandlers = function () {
 }
 
 const restartGame = function (event) {
-  // set game over state to false
+  // clear message display
+  ui.clearMessage()
+  // set game state and current turn and clear out cells array
   store.over = false
-  // set current player to x
   store.currentTurn = 'x'
-  // clear out `store.cells` array
   store.cells = ['', '', '', '', '', '', '', '', '']
-  // empty out contents of all game cells
-  $('.game-cell').html('')
+  // empty contents game cells & update win counts
+  ui.displayCells()
+  ui.updateWins()
   // set player x active and player o inactive
   $('#player-x').addClass('active')
   $('#player-o').removeClass('active')
-  // display win counts
-  ui.updateWins()
-  // alert new game
-  ui.showMessage('New Game!')
   // set restart game button text
   $('#restart-game').html('Restart Game')
 }
@@ -76,21 +73,16 @@ const checkForWins = function () {
     })
     // check if all values in the array are identical and NOT ''
     // if so, set winner variable to that value
-    if (testArray[0] === testArray[1] && testArray[1] === testArray[2]) {
-      if (testArray[0] !== '') {
-        winner = testArray[0]
-      }
+    if (testArray[0] === testArray[1] && testArray[1] === testArray[2] &&
+      testArray[0] !== '') {
+      winner = testArray[0]
     }
   })
   // after looping, if a winner was found (value isn't null), alert win
   if (winner) {
     store.over = true
     ui.showMessage(`Player ${winner} has won the game!`)
-    if (winner === 'x') {
-      store.xWins++
-    } else if (winner === 'o') {
-      store.oWins++
-    }
+    store[`${winner}Wins`]++
     ui.updateWins()
     // set restart game button text
     $('#restart-game').html('Demand a rematch!')
