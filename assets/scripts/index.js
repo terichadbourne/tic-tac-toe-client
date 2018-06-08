@@ -4,6 +4,7 @@
 // const example = require('./example')
 
 const events = require('./events')
+const authEvents = require('./auth/events')
 
 // use require without a reference to ensure a file is bundled
 // require('./example')
@@ -11,4 +12,5 @@ const events = require('./events')
 $(() => {
   events.addHandlers()
   events.restartGame()
+  authEvents.addHandlers()
 })
