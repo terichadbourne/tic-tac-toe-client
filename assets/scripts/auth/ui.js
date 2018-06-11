@@ -60,7 +60,15 @@ const signOutError = function (error) {
 
 const revealForm = function (event) {
   console.log('event.target in revealForm is: ', event.target)
+  console.log('$(event.target).parent() is: ', $(event.target).parent())
   $(event.target).next().toggleClass('hidden')
+  // if sign up or sign in was clicked, make sure the opposite form is hidden as
+  // this one is revealed
+  if ($(event.target).hasClass('sign-in')) {
+    $($('#signup-form').addClass('hidden'))
+  } else if ($(event.target).hasClass('sign-up')) {
+    $($('#signin-form').addClass('hidden'))
+  }
 }
 
 // displays a message to the user
