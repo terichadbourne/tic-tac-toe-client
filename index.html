@@ -20,23 +20,32 @@
       </nav>
 
       <section id='authentication' class="row">
-        <form id="signup-form">
-          <input name="credentials[email]" placeholder='Email' type='text' required/>
-          <input name="credentials[password]" placeholder='Password' type='password' required/>
-          <input name="credentials[password_confirmation]" placeholder='Password Confirmation' type='password' required/>
-          <button type=submit>Sign Up</button>
-        </form>
-        <form id="signin-form">
-          <input name="credentials[email]" placeholder='Email' type='text' required/>
-          <input name="credentials[password]" placeholder='Password' type='password' required/>
-          <button type=submit>Sign In</button>
-        </form>
-        <form id="change-password-form">
-          <input name="passwords[old]" placeholder='Old Password' type='password' required/>
-          <input name="passwords[new]" placeholder='New Password' type='password' required/>
-          <button type=submit>Change Password</button>
-        </form>
-        <button id="sign-out-button">Sign Out</button>
+        <div class="sign-up">
+          <p class="reveal-form auth-option">Sign Up</p>
+          <form id="signup-form" class="hidden">
+            <input name="credentials[email]" placeholder='Email' type='text' required/>
+            <input name="credentials[password]" placeholder='Password' type='password' required/>
+            <input name="credentials[password_confirmation]" placeholder='Password Confirmation' type='password' required/>
+            <button type=submit>Sign Up</button>
+          </form>
+        </div>
+        <div class="sign-in">
+          <p class="reveal-form auth-option">Sign In</p>
+          <form id="signin-form" class="hidden">
+            <input name="credentials[email]" placeholder='Email' type='text' required/>
+            <input name="credentials[password]" placeholder='Password' type='password' required/>
+            <button type=submit>Sign In</button>
+          </form>
+        </div>
+        <div class="change-password hidden">
+          <p class="reveal-form auth-option">Change Password</p>
+          <form id="change-password-form" class="hidden">
+            <input name="passwords[old]" placeholder='Old Password' type='password' required/>
+            <input name="passwords[new]" placeholder='New Password' type='password' required/>
+            <button type=submit>Change Password</button>
+          </form>
+        </div>
+        <p id="sign-out" class="auth-option hidden">Sign Out</p>
       </section>
 
       <section id="player-turns" class="row">
