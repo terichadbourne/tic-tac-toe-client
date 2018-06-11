@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('../store')
+const ui = require('../ui')
 
 const signUpError = function (error) {
   console.log('signUpError is', error)
@@ -9,6 +10,8 @@ const signUpError = function (error) {
 
 const signInSuccess = function (response) {
   console.log('signInSucces response is ', response)
+  // If there was a message about needing to sign in, remove it
+  ui.clearMessage()
   store.user = response.user
   console.log('store.user is ', store.user)
   console.log('store.user.token is ', store.user.token)

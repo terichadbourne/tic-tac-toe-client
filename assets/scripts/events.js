@@ -2,6 +2,7 @@
 
 const store = require('./store')
 const ui = require('./ui')
+const gameEvents = require('./game-storage/events')
 
 // all event handlers
 const addHandlers = function () {
@@ -12,6 +13,10 @@ const addHandlers = function () {
 const restartGame = function (event) {
   // clear message display
   ui.clearMessage()
+  // // if someone's logged in, create new game on server
+  // if (store.user) {
+  //   gameEvents.createGame(store.user.token)
+  // }
   // set game state and current turn and clear out cells array
   store.over = false
   store.currentTurn = 'x'
@@ -30,22 +35,27 @@ const restartGame = function (event) {
 const playHere = function (event) {
   // clear any previous messages
   ui.clearMessage()
-  // if the game's not already over...
-  if (store.over === false) {
-    // if cell was blank, add symbol of current player to `store.cells` array,
-    // redisplay symbols on all cells, then swap players
-    if ($(event.target).html() === '') {
-      store.cells[event.target.id] = store.currentTurn
-      ui.displayCells()
-      // use checkForWins to either alert winner or run swapTurns
-      checkForWins()
-    // if cell was occupied, log error and prevent play and turn swap
-    } else {
-      ui.showMessage('That cell is already occupied. Try again!')
-    }
-  // else if game is over, alert that
+  // if not logged in, block action, otherwsie continue
+  if (!store.user) {
+    ui.showMessage('You must log in before you can play.')
   } else {
-    ui.showMessage('This game is over. Click the button below for a rematch.')
+    // if the game's not already over...
+    if (store.over === false) {
+      // if cell was blank, add symbol of current player to `store.cells` array,
+      // redisplay symbols on all cells, then swap players
+      if ($(event.target).html() === '') {
+        store.cells[event.target.id] = store.currentTurn
+        ui.displayCells()
+        // use checkForWins to either alert winner or run swapTurns
+        checkForWins()
+      // if cell was occupied, log error and prevent play and turn swap
+      } else {
+        ui.showMessage('That cell is already occupied. Try again!')
+      }
+    // else if game is over, alert that
+    } else {
+      ui.showMessage('This game is over. Click the button below for a rematch.')
+    }
   }
 }
 
