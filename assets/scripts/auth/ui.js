@@ -11,6 +11,12 @@ const signInSuccess = function (response) {
   store.user = response.user
   console.log('store.user is ', store.user)
   console.log('store.user.token is ', store.user.token)
+  $('#signin-form').addClass('hidden')
+  $('#signup-form').addClass('hidden')
+  $('.sign-up').addClass('hidden')
+  $('.sign-in').addClass('hidden')
+  $('#sign-out').removeClass('hidden')
+  $('.change-password').removeClass('hidden')
 }
 
 const signInError = function (error) {
@@ -20,6 +26,7 @@ const signInError = function (error) {
 const changePasswordSuccess = function (response) {
   // there is not supposed to be a response
   console.log('changePasswordSuccess response is ', response)
+  $('#change-password-form').addClass('hidden')
 }
 
 const changePasswordError = function (error) {
@@ -32,10 +39,19 @@ const signOutSuccess = function (response) {
   delete store.user
   console.log('You were successfully signed out')
   console.log('store.user after deleting it: ', store.user)
+  $('.sign-up').removeClass('hidden')
+  $('.sign-in').removeClass('hidden')
+  $('#sign-out').addClass('hidden')
+  $('.change-password').addClass('hidden')
 }
 
 const signOutError = function (error) {
   console.log('signOutError is', error)
+}
+
+const revealForm = function (event) {
+  console.log('event.target in revealForm is: ', event.target)
+  $(event.target).next().toggleClass('hidden')
 }
 
 // TODO:
@@ -49,5 +65,6 @@ module.exports = {
   changePasswordSuccess: changePasswordSuccess,
   changePasswordError: changePasswordError,
   signOutSuccess: signOutSuccess,
-  signOutError: signOutError
+  signOutError: signOutError,
+  revealForm: revealForm
 }

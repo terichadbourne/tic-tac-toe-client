@@ -20,6 +20,11 @@ footer {
   color: white;
 }
 
+input {
+  display: block;
+  margin: 5px auto;
+}
+
 nav {
   background-color: black;
   color: white;
@@ -28,6 +33,17 @@ nav {
 
 nav > h1 {
   margin: 0;
+}
+
+p.auth-option {
+  margin-bottom: 0;
+}
+
+.auth-option {
+  background-color: black;
+  color: white;
+  border-top: thin white solid;
+  padding: 5px 0;
 }
 
 .container-fluid {
@@ -44,6 +60,10 @@ nav > h1 {
   text-align: center;
   vertical-align: middle;
   width: 25vw;
+}
+
+.hidden {
+  display: none;
 }
 
 .navbar {

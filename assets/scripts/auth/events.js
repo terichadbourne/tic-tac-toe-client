@@ -8,7 +8,8 @@ const addHandlers = function () {
   $('#signup-form').on('submit', onSignUp)
   $('#signin-form').on('submit', onSignIn)
   $('#change-password-form').on('submit', onChangePassword)
-  $('#sign-out-button').on('click', onSignOut)
+  $('#sign-out').on('click', onSignOut)
+  $('.reveal-form').on('click', authUi.revealForm)
 }
 
 // SIGN UP
@@ -83,6 +84,8 @@ const onChangePassword = function (event) {
   const data = getFormFields(event.target)
   console.log('data in onChangePassword is: ', data)
   authApi.changePassword(data)
+    .then(authUi.changePasswordSuccess)
+    .catch(authUi.changePasswordError)
 }
 
 // SIGN OUT
