@@ -14,10 +14,12 @@ const clearMessage = function () {
 
 // loop through `store.cells` array to draw game board
 const displayCells = function () {
-  store.cells.forEach((element, index) => {
+  console.log('running displayCells')
+  store.game.cells.forEach((element, index) => {
     $(`#${index}`).html(element)
   })
 }
+
 const updateWins = function () {
   $('#player-x-wins').html(store.xWins)
   $('#player-o-wins').html(store.oWins)

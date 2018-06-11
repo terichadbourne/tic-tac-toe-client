@@ -2,6 +2,7 @@
 
 const store = require('../store')
 const ui = require('../ui')
+const events = require('../events')
 
 const signUpError = function (error) {
   console.log('signUpError is', error)
@@ -13,8 +14,8 @@ const signInSuccess = function (response) {
   // If there was a message about needing to sign in, remove it
   ui.clearMessage()
   store.user = response.user
-  console.log('store.user is ', store.user)
-  console.log('store.user.token is ', store.user.token)
+  console.log('in signinsuccess, store.user is ', store.user)
+  console.log('in signinsuccess, store.user.token is ', store.user.token)
   $('#signin-form').addClass('hidden')
   $('#signup-form').addClass('hidden')
   $('.sign-up').addClass('hidden')
@@ -24,6 +25,7 @@ const signInSuccess = function (response) {
   $('#player-x-email').html(store.user.email)
   showAuthMessage("Success! You're now signed in as Player X!")
   setTimeout(clearAuthMessage, 3000)
+  events.onCreateGame()
 }
 
 const signInError = function (error) {
@@ -47,7 +49,11 @@ const changePasswordError = function (error) {
 const signOutSuccess = function (response) {
   // no response
   console.log('store.user.token is ', store.user.token)
+  // delete game and user records from database
   delete store.user
+  delete store.game
+  // clear cell contents
+  $('.game-cell').html('')
   console.log('You were successfully signed out')
   console.log('store.user after deleting it: ', store.user)
   $('.sign-up').removeClass('hidden')

@@ -11,6 +11,5 @@ const authEvents = require('./auth/events')
 
 $(() => {
   events.addHandlers()
-  events.restartGame()
   authEvents.addHandlers()
 })
