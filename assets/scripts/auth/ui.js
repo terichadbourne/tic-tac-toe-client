@@ -4,6 +4,7 @@ const store = require('../store')
 
 const signUpError = function (error) {
   console.log('signUpError is', error)
+  showAuthMessage("That didn't work. The username is likely taken. Please try again.")
 }
 
 const signInSuccess = function (response) {
@@ -17,20 +18,26 @@ const signInSuccess = function (response) {
   $('.sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('.change-password').removeClass('hidden')
+  showAuthMessage("Success! You're now signed in!")
+  setTimeout(clearAuthMessage, 3000)
 }
 
 const signInError = function (error) {
   console.log('signInError is', error)
+  showAuthMessage('Either your email or password was incorrect. Please try again.')
 }
 
 const changePasswordSuccess = function (response) {
   // there is not supposed to be a response
   console.log('changePasswordSuccess response is ', response)
   $('#change-password-form').addClass('hidden')
+  showAuthMessage('Success! Your password has been changed!')
+  setTimeout(clearAuthMessage, 3000)
 }
 
 const changePasswordError = function (error) {
   console.log('changePasswordError is', error)
+  showAuthMessage('Oops! Please correct your old password and try again.')
 }
 
 const signOutSuccess = function (response) {
@@ -43,6 +50,8 @@ const signOutSuccess = function (response) {
   $('.sign-in').removeClass('hidden')
   $('#sign-out').addClass('hidden')
   $('.change-password').addClass('hidden')
+  showAuthMessage("Success! You've been signed out.")
+  setTimeout(clearAuthMessage, 3000)
 }
 
 const signOutError = function (error) {
@@ -54,9 +63,15 @@ const revealForm = function (event) {
   $(event.target).next().toggleClass('hidden')
 }
 
-// TODO:
-// if no token present, options are sign in or sign up
-// if token present, options are sign out or change password
+// displays a message to the user
+const showAuthMessage = function (message) {
+  $('.auth-alert').html(message).removeClass('hidden')
+}
+
+// removes message currently displayed to user
+const clearAuthMessage = function () {
+  $('.auth-alert').addClass('hidden').html('')
+}
 
 module.exports = {
   signUpError: signUpError,
@@ -66,5 +81,7 @@ module.exports = {
   changePasswordError: changePasswordError,
   signOutSuccess: signOutSuccess,
   signOutError: signOutError,
-  revealForm: revealForm
+  revealForm: revealForm,
+  showAuthMessage: showAuthMessage,
+  clearAuthMessage: clearAuthMessage
 }
