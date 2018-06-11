@@ -54,6 +54,9 @@ const signOutSuccess = function (response) {
   $('#player-x-email').html('Anonymous')
   showAuthMessage("Success! You've been signed out.")
   setTimeout(clearAuthMessage, 3000)
+  setTimeout(() => {
+    showAuthMessage('Please sign in so your score can be tracked!')
+  }, 3001)
 }
 
 const signOutError = function (error) {
