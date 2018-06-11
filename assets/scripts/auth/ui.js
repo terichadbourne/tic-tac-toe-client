@@ -18,7 +18,8 @@ const signInSuccess = function (response) {
   $('.sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('.change-password').removeClass('hidden')
-  showAuthMessage("Success! You're now signed in!")
+  $('#player-x-email').html(store.user.email)
+  showAuthMessage("Success! You're now signed in as Player X!")
   setTimeout(clearAuthMessage, 3000)
 }
 
@@ -50,6 +51,7 @@ const signOutSuccess = function (response) {
   $('.sign-in').removeClass('hidden')
   $('#sign-out').addClass('hidden')
   $('.change-password').addClass('hidden')
+  $('#player-x-email').html('Anonymous')
   showAuthMessage("Success! You've been signed out.")
   setTimeout(clearAuthMessage, 3000)
 }
