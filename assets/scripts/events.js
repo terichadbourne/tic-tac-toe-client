@@ -7,10 +7,10 @@ const gameApi = require('./game-storage/game-api')
 // all event handlers
 const addHandlers = function () {
   $('.game-cell').on('click', playHere)
-  $('#restart-game').on('click', restartGame)
+  $('#rematch-button').on('click', startNewGame)
 }
 
-const restartGame = function (event) {
+const startNewGame = function (event) {
   // clear message display
   ui.clearMessage()
   // set game state and current turn and clear out cells array
@@ -20,9 +20,8 @@ const restartGame = function (event) {
   // set player x active and player o inactive
   $('#player-x').addClass('active')
   $('#player-o').removeClass('active')
-  // set restart game button text
-  $('#restart-game').html('Restart Game')
-  $('#restart-game').removeClass('rematch')
+  // hide rematch button
+  $('#rematch-button').addClass('hidden')
 }
 
 const playHere = function (event) {
@@ -89,16 +88,14 @@ const checkForWins = function () {
     ui.showMessage(`Player ${winner.toUpperCase()} has won the game!`)
     store[`${winner}Wins`]++
     ui.updateWins()
-    // set restart game button text
-    $('#restart-game').html('Demand a rematch!')
-    $('#restart-game').addClass('rematch')
+    // hide rematch button
+    $('#rematch-button').removeClass('hidden')
   // else if no winner but all cells full, alert draw
   } else if (store.game.cells.every(cellOccupied)) {
     onFinishGame()
     ui.showMessage("It's a draw! Click below to start a new game.")
-    // set restart game button text
-    $('#restart-game').html('Demand a rematch!')
-    $('#restart-game').addClass('rematch')
+    // show rematch button
+    $('#rematch-button').removeClass('hidden')
   // else continue with game
   } else {
     swapTurns()
@@ -177,7 +174,7 @@ module.exports = {
   checkForWins: checkForWins,
   cellOccupied: cellOccupied,
   winningLines: winningLines,
-  restartGame: restartGame,
+  startNewGame: startNewGame,
   onCreateGame: onCreateGame,
   onUpdateGame: onUpdateGame,
   onFinishGame: onFinishGame

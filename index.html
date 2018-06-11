@@ -51,14 +51,16 @@
 
       <section id="player-turns" class="row">
         <div class="col-xs-12 col-sm-6">
-          <p id="player-x" class="player active">Player X: <span id="player-x-email">Anonymous</span> (<span id="player-x-wins"></span> Wins)</p>
+          <p id="player-x" class="player active">Player X: <span id="player-x-email">Anonymous</span> (<span id="player-x-wins">0</span> Wins)</p>
         </div>
         <div class="col-xs-12 col-sm-6">
-          <p id="player-o" class="player">Player O: <span id="player-o-email">Anonymous</span> (<span id="player-o-wins"></span> Wins)</p>
+          <p id="player-o" class="player">Player O: <span id="player-o-email">Anonymous</span> (<span id="player-o-wins">0</span> Wins)</p>
         </div>
       </section>
 
       <p id="message"></p>
+
+      <button type="button" id="rematch-button" class="hidden">Demand a Rematch!</button>
 
       <section id="game-board">
         <div class="row game-row">
@@ -77,8 +79,6 @@
           <div class="game-cell col-xs-4" id="8"></div>
         </div>
       </section>
-
-      <button type="button" id="restart-game">Restart Game</button>
 
       <footer class="row">
         <p><em>Built by Teri Chadbourne</em></p>

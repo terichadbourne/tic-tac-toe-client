@@ -79,7 +79,6 @@ p.auth-alert {
   margin-bottom: 0;
 }
 
-
 .player {
   border: thin solid purple;
   border-radius: 20px;
@@ -92,19 +91,9 @@ p.auth-alert {
   text-align: center;
 }
 
-.rematch {
-  background-color: pink;
-  border: thick solid purple;
-  font-weight: bold;
-}
-
 .row {
   margin-left: 0;
   margin-right: 0;
-}
-
-#player-turns > div {
-  text-align: center;
 }
 
 .player.active {
@@ -128,4 +117,14 @@ p.auth-alert {
   font-size: 18px;
   padding: 5px;
   text-align: center;
+}
+
+#player-turns > div {
+  text-align: center;
+}
+
+#rematch-button {
+  background-color: pink;
+  border: thick solid purple;
+  font-weight: bold;
 }
