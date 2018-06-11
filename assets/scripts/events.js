@@ -2,7 +2,7 @@
 
 const store = require('./store')
 const ui = require('./ui')
-const gameApi = require('./game-storage/api')
+const gameApi = require('./game-storage/game-api')
 
 // all event handlers
 const addHandlers = function () {

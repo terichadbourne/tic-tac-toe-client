@@ -1,8 +1,8 @@
 'use strict'
 
 const getFormFields = require('../../../lib/get-form-fields')
-const authApi = require('./api')
-const authUi = require('./ui')
+const authApi = require('./auth-api')
+const authUi = require('./auth-ui')
 
 const addHandlers = function () {
   $('#signup-form').on('submit', onSignUp)
