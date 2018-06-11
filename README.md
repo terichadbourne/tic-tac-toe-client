@@ -5,15 +5,14 @@
 
 ### README Requirements
 
-TODO: [REQUIRED] Pin your repository on GitHub as a Popular Repository
 TODO: [REQUIRED] Complete the repository Description field and Website field with a meaningful sentence description of the application
 
 ### Live Project Link
 
-TODO: link to the live URL github image
+Play now at: [https://terichadbourne.github.io/tic-tac-toe-client/](https://terichadbourne.github.io/tic-tac-toe-client/)
 
 ### Wireframes
-TODO: [REQUIRED] Link to wireframes 
+TODO: [REQUIRED] Link to wireframes
 
 ### User Stories
 
