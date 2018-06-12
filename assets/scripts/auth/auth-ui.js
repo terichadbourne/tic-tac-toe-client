@@ -1,6 +1,8 @@
 'use strict'
 
 const store = require('../store')
+const ui = require('../ui')
+const events = require('../events')
 
 const signUpError = function (error) {
   console.log('signUpError is', error)
@@ -9,17 +11,22 @@ const signUpError = function (error) {
 
 const signInSuccess = function (response) {
   console.log('signInSucces response is ', response)
+  // If there was a message about needing to sign in, remove it
+  ui.clearMessage()
   store.user = response.user
-  console.log('store.user is ', store.user)
-  console.log('store.user.token is ', store.user.token)
+  console.log('in signinsuccess, store.user is ', store.user)
+  console.log('in signinsuccess, store.user.token is ', store.user.token)
   $('#signin-form').addClass('hidden')
   $('#signup-form').addClass('hidden')
   $('.sign-up').addClass('hidden')
   $('.sign-in').addClass('hidden')
   $('#sign-out').removeClass('hidden')
   $('.change-password').removeClass('hidden')
-  showAuthMessage("Success! You're now signed in!")
+  $('#player-x-email').html(store.user.email)
+  showAuthMessage("Success! You're now signed in as Player X!")
   setTimeout(clearAuthMessage, 3000)
+  events.onCreateGame()
+  events.onGetCompletedGames()
 }
 
 const signInError = function (error) {
@@ -43,15 +50,23 @@ const changePasswordError = function (error) {
 const signOutSuccess = function (response) {
   // no response
   console.log('store.user.token is ', store.user.token)
+  // delete game and user records from database
   delete store.user
+  delete store.game
+  // clear cell contents
+  $('.game-cell').html('')
   console.log('You were successfully signed out')
   console.log('store.user after deleting it: ', store.user)
   $('.sign-up').removeClass('hidden')
   $('.sign-in').removeClass('hidden')
   $('#sign-out').addClass('hidden')
   $('.change-password').addClass('hidden')
+  $('#player-x-email').html('Anonymous')
   showAuthMessage("Success! You've been signed out.")
   setTimeout(clearAuthMessage, 3000)
+  setTimeout(() => {
+    showAuthMessage('Please sign in so your score can be tracked!')
+  }, 3001)
 }
 
 const signOutError = function (error) {
