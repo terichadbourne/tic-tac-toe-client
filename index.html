@@ -19,11 +19,76 @@
         <span class="navbar-brand">Tic Tac Toe</span>
         <form class="form-inline justify-content-end">
           <button class="sign-out hidden btn btn-outline-success" type="button">Sign Out</button>
-          <button class="change-password hidden btn btn-outline-success" type="button">Change Password</button>
-          <button class="sign-in btn btn-outline-success" type="button">Sign In</button>
-          <button class="sign-up btn btn-outline-success" type="button">Sign Up</button>
+          <button class="change-password hidden btn btn-outline-success" data-toggle="modal" data-target="#changePasswordModal" type="button">Change Password</button>
+          <button class="sign-in btn btn-outline-success" data-toggle="modal" data-target="#signInModal" type="button">Sign In</button>
+          <button class="sign-up btn btn-outline-success" data-toggle="modal" data-target="#signUpModal" type="button">Sign Up</button>
         </form>
       </nav>
+
+      <!-- SIGN IN Modal -->
+      <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              put CHANGE PASSWORD form here
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Change Password</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              put form here
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Sign In</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="signUpModalLabel">Sign Up</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              put SIGN UP form here
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Sign Up</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
       <section id='authentication' class="row">
         <div class="sign-up">
