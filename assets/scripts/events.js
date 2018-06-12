@@ -191,7 +191,7 @@ const onGetCompletedGames = function () {
 
 // test a single gaame to find win, draw, incomplete
 const updateWinRecord = function (cellsArray) {
-  // console.log('inside updateWinRecord')
+  console.log('RUNNING updateWinRecord')
   // console.log('typeof cellsArray inside updateWinRecord: ', typeof cellsArray)
   // console.log('now testing this cellsArray: ', cellsArray)
   // console.log('cellsArray[1]: ', cellsArray[1])
@@ -205,7 +205,7 @@ const updateWinRecord = function (cellsArray) {
     winningLine.forEach((cellIndex) => {
       testArray.push(cellsArray[cellIndex])
     })
-    console.log('testArray this time through winningLines.forEach is: ', testArray)
+    // console.log('testArray this time through winningLines.forEach is: ', testArray)
     // check if all values in the array are identical and NOT ''
     // if so, set winner variable to that value
     if (testArray[0] === testArray[1] && testArray[1] === testArray[2] &&
@@ -218,21 +218,22 @@ const updateWinRecord = function (cellsArray) {
   // after looping, if a winner was found (value isn't null), alert win
   if (winner) {
     gameStatus = winner
-    console.log('found winner: ', winner)
+    // console.log('found winner: ', winner)
     store[`${winner}Wins`]++
-    console.log('store.xWins: ', store.xWins)
-    console.log('store.oWins: ', store.oWins)
   // else if no winner but all cells full, add to both draw records
   // we know the board is full because the game was marked over w/o a win
   } else if (cellsArray.every(cellOccupied)) {
     gameStatus = 'draw'
     store[`xDraws`]++
     store[`oDraws`]++
-    console.log('store.xDraws: ', store.xDraws)
-    console.log('store.oDraws: ', store.oDraws)
   } else {
     gameStatus = 'incomplete'
   }
+  console.log('results of updateWinRecord: ')
+  console.log('store.xWins: ', store.xWins)
+  console.log('store.oWins: ', store.oWins)
+  console.log('store.xDraws: ', store.xDraws)
+  console.log('store.oDraws: ', store.oDraws)
   console.log('game.status in updateWinRecord: ', gameStatus)
   return gameStatus
 }
