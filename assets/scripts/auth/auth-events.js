@@ -8,8 +8,8 @@ const addHandlers = function () {
   $('#signup-form').on('submit', onSignUp)
   $('#signin-form').on('submit', onSignIn)
   $('#change-password-form').on('submit', onChangePassword)
-  $('#sign-out').on('click', onSignOut)
-  $('.reveal-form').on('click', authUi.revealForm)
+  $('.sign-out').on('click', onSignOut)
+  $('button[data-dismiss]').on('click', authUi.clearAuthForms)
 }
 
 // SIGN UP
@@ -29,7 +29,7 @@ const addHandlers = function () {
 
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log('clicked on signup button')
+  console.log('CLICKED ON SIGNUP BUTTON IN MODAL')
   console.log('event.target of sign-up: ', event.target)
   const data = getFormFields(event.target)
   console.log('data in onSignUp is: ', data)

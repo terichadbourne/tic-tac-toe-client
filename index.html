@@ -36,11 +36,16 @@
               </button>
             </div>
             <div class="modal-body">
-              put CHANGE PASSWORD form here
+              <form id="change-password-form">
+                <input name="passwords[old]" placeholder='Old Password' type='password' required/>
+                <input name="passwords[new]" placeholder='New Password' type='password' required/>
+              </form>
+              <p class="auth-alert-modal"></p>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Change Password</button>
+              <button class="btn btn-primary" type="submit" form="change-password-form">Change Password</button>
+              <p class="auth-alert"></p>
             </div>
           </div>
         </div>
@@ -57,17 +62,21 @@
               </button>
             </div>
             <div class="modal-body">
-              put form here
+              <form id="signin-form">
+                <input name="credentials[email]" placeholder='Email' type='text' required/>
+                <input name="credentials[password]" placeholder='Password' type='password' required/>
+              <p class="auth-alert-modal"></p>
+              </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Sign In</button>
+              <button class="btn btn-primary" type="submit" form="signin-form">Sign In</button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Modal -->
+      <!-- SIGN UP FORM Modal -->
       <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="signUpModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -78,47 +87,22 @@
               </button>
             </div>
             <div class="modal-body">
-              put SIGN UP form here
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Sign Up</button>
-            </div>
+              <form id="signup-form">
+                <input name="credentials[email]" placeholder='Email' type='text' required/>
+                <input name="credentials[password]" placeholder='Password' type='password' required/>
+                <input name="credentials[password_confirmation]" placeholder='Password Confirmation' type='password' required/>
+              </form>
+              <p class="auth-alert-modal"></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary" type="submit" form="signup-form">Sign Up</button>
+              </div>
           </div>
         </div>
       </div>
 
-
-
-      <section id='authentication' class="row">
-        <div class="sign-up">
-          <p class="reveal-form auth-option sign-up">Sign Up</p>
-          <form id="signup-form" class="hidden">
-            <input name="credentials[email]" placeholder='Email' type='text' required/>
-            <input name="credentials[password]" placeholder='Password' type='password' required/>
-            <input name="credentials[password_confirmation]" placeholder='Password Confirmation' type='password' required/>
-            <button type=submit>Sign Up</button>
-          </form>
-        </div>
-        <div class="sign-in">
-          <p class="reveal-form auth-option sign-in">Sign In</p>
-          <form id="signin-form" class="hidden">
-            <input name="credentials[email]" placeholder='Email' type='text' required/>
-            <input name="credentials[password]" placeholder='Password' type='password' required/>
-            <button type=submit>Sign In</button>
-          </form>
-        </div>
-        <div class="change-password hidden">
-          <p class="reveal-form auth-option change-password">Change Password</p>
-          <form id="change-password-form" class="hidden">
-            <input name="passwords[old]" placeholder='Old Password' type='password' required/>
-            <input name="passwords[new]" placeholder='New Password' type='password' required/>
-            <button type=submit>Change Password</button>
-          </form>
-        </div>
-        <p id="sign-out" class="auth-option hidden">Sign Out</p>
-        <p class="auth-alert">Please sign in so your score can be tracked!</p>
-      </section>
+      <p class="auth-alert-main"></p>
 
       <section id="player-turns" class="row">
         <div class="col-xs-12 col-sm-6">
