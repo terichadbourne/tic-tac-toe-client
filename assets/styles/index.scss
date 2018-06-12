@@ -2,6 +2,10 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+a {
+  color: pink;
+}
+
 body {
   text-align: center;
 }
@@ -89,15 +93,6 @@ p.auth-alert {
 .game-row > .game-cell:last-of-type {
   border-right: none;
 }
-
-// [id="0"], [id="1"], [id="2"], [id="3"], [id="4"], [id="4"] {
-//   border-bottom: thin solid black;
-// }
-//
-// [id="1"] {
-//   border: thin solid black;
-// }
-
 
 .hidden {
   display: none;
