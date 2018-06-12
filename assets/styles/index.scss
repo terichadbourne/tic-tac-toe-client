@@ -25,6 +25,14 @@ nav button {
 footer {
   background-color: black;
   color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
 }
 
 input {
@@ -42,10 +50,6 @@ nav > h1 {
   margin: 0;
 }
 
-p.auth-option {
-  margin-bottom: 0;
-}
-
 p.auth-alert {
   background-color: pink;
   border-bottom: thin white solid;
@@ -53,13 +57,6 @@ p.auth-alert {
   color: purple;
   font-weight: bold;
   margin-bottom: 0;
-}
-
-.auth-option {
-  background-color: black;
-  color: white;
-  border-top: thin white solid;
-  padding: 5px 0;
 }
 
 .container-fluid {
@@ -71,11 +68,11 @@ p.auth-alert {
   border: thin black solid;
   color: black;
   font-size: 50px;
-  height: 25vw;
-  line-height: 25vw;
+  height: 30vw;
+  line-height: 30vw;
   text-align: center;
   vertical-align: middle;
-  width: 25vw;
+  width: 30vw;
 }
 
 .hidden {
@@ -115,7 +112,7 @@ p.auth-alert {
 
 #game-board {
   margin: 15px auto;
-  width: 75vw;
+  width: 90vw;
 }
 
 #message {
@@ -134,4 +131,49 @@ p.auth-alert {
   background-color: pink;
   border: thick solid purple;
   font-weight: bold;
+}
+
+@media screen and (min-width: 400px) and (max-width: 759px) {
+  .game-cell {
+    width: 110px;
+    height: 110px;
+    line-height: 110px;
+  }
+
+  #game-board {
+    width: 330px;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .game-cell {
+    height: 150px;
+    line-height: 150px;
+    width: 150px;
+  }
+
+  main {
+    min-height: 500px;
+  }
+
+  .game-row {
+    width: 450px;
+    margin: auto;
+  }
+
+  #game-board {
+    width: 60vw;
+  }
+
+  #stats-n-stuff {
+    background-color: #D0D0D0;
+    width: 40vw;
+    height: 100vh;
+
+  }
+
+  #stats-n-stuff,
+  #game-board {
+    float: right;
+  }
 }

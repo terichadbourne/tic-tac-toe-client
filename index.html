@@ -24,6 +24,53 @@
           <button class="sign-up btn btn-outline-success" data-toggle="modal" data-target="#signUpModal" type="button">Sign Up</button>
         </form>
       </nav>
+      <main>
+        <section id="stats-n-stuff">
+
+          <p class="auth-alert-main"></p>
+
+          <section id="player-turns" class="row">
+            <div class="col-xs-12">
+              <p id="player-x" class="player active">Player X: <span id="player-x-email">Anonymous</span></p>
+              <p class="stats"> <span id="player-x-wins">0</span> Wins, <span id="player-x-draws">0</span> Draws</p>
+            </div>
+            <div class="col-xs-12">
+              <p id="player-o" class="player">Player O: <span id="player-o-email">Anonymous</span></p>
+              <p class="stats"><span id="player-o-wins">0</span> Wins, <span id="player-o-draws">0</span> Draws</p>
+            </div>
+          </section>
+
+          <p id="message"></p>
+
+          <button type="button" id="rematch-button" class="hidden">Demand a Rematch!</button>
+        </section>
+
+        <section id="surround-game-board">
+
+          <section id="game-board">
+            <div class="row game-row">
+              <div class="game-cell col-xs-4" id="0"></div>
+              <div class="game-cell col-xs-4" id="1"></div>
+              <div class="game-cell col-xs-4" id="2"></div>
+            </div>
+            <div class="row game-row">
+              <div class="game-cell col-xs-4" id="3"></div>
+              <div class="game-cell col-xs-4" id="4"></div>
+              <div class="game-cell col-xs-4" id="5"></div>
+            </div>
+            <div class="row game-row">
+              <div class="game-cell col-xs-4" id="6"></div>
+              <div class="game-cell col-xs-4" id="7"></div>
+              <div class="game-cell col-xs-4" id="8"></div>
+            </div>
+          </section>
+
+        </section>
+      </main>
+      <footer class="row">
+        <p><em>Built by Teri Chadbourne</em></p>
+      </footer>
+
 
       <!-- SIGN IN Modal -->
       <div class="modal fade" id="changePasswordModal" tabindex="-1" role="dialog" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
@@ -102,42 +149,6 @@
         </div>
       </div>
 
-      <p class="auth-alert-main"></p>
-
-      <section id="player-turns" class="row">
-        <div class="col-xs-12 col-sm-6">
-          <p id="player-x" class="player active">Player X: <span id="player-x-email">Anonymous</span> (<span id="player-x-wins">0</span> Wins, <span id="player-x-draws">0</span> Draws)</p>
-        </div>
-        <div class="col-xs-12 col-sm-6">
-          <p id="player-o" class="player">Player O: <span id="player-o-email">Anonymous</span> (<span id="player-o-wins">0</span> Wins, <span id="player-o-draws">0</span> Draws)</p>
-        </div>
-      </section>
-
-      <p id="message"></p>
-
-      <button type="button" id="rematch-button" class="hidden">Demand a Rematch!</button>
-
-      <section id="game-board">
-        <div class="row game-row">
-          <div class="game-cell col-xs-4" id="0"></div>
-          <div class="game-cell col-xs-4" id="1"></div>
-          <div class="game-cell col-xs-4" id="2"></div>
-        </div>
-        <div class="row game-row">
-          <div class="game-cell col-xs-4" id="3"></div>
-          <div class="game-cell col-xs-4" id="4"></div>
-          <div class="game-cell col-xs-4" id="5"></div>
-        </div>
-        <div class="row game-row">
-          <div class="game-cell col-xs-4" id="6"></div>
-          <div class="game-cell col-xs-4" id="7"></div>
-          <div class="game-cell col-xs-4" id="8"></div>
-        </div>
-      </section>
-
-      <footer class="row">
-        <p><em>Built by Teri Chadbourne</em></p>
-      </footer>
     </body>
 
 </html>
