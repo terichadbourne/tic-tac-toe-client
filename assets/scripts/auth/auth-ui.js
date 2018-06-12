@@ -68,6 +68,7 @@ const signOutSuccess = function (response) {
   console.log('store.user after deleting it: ', store.user)
   clearAuthForms()
   ui.updateWins()
+  ui.hideWinningCells()
   $('.sign-up').removeClass('hidden')
   $('.sign-in').removeClass('hidden')
   $('.sign-out').addClass('hidden')
