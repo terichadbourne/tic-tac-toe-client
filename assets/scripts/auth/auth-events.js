@@ -29,7 +29,6 @@ const addHandlers = function () {
 
 const onSignUp = function (event) {
   event.preventDefault()
-  console.log('CLICKED ON SIGNUP BUTTON IN MODAL')
   console.log('event.target of sign-up: ', event.target)
   const data = getFormFields(event.target)
   console.log('data in onSignUp is: ', data)

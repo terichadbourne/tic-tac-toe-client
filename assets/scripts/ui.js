@@ -27,9 +27,21 @@ const updateWins = function () {
   $('#player-o-draws').html(store.oDraws)
 }
 
+const showWinningCells = function () {
+  store.winningCells.forEach((cellIndex) => {
+    $(`#${cellIndex}`).addClass('winning-cell')
+  })
+}
+
+const hideWinningCells = function () {
+  $('.game-cell').removeClass('winning-cell')
+}
+
 module.exports = {
   showMessage: showMessage,
   clearMessage: clearMessage,
   displayCells: displayCells,
-  updateWins: updateWins
+  updateWins: updateWins,
+  showWinningCells: showWinningCells,
+  hideWinningCells: hideWinningCells
 }
