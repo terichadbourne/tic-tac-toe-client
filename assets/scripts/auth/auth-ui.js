@@ -7,6 +7,7 @@ const events = require('../events')
 const signUpError = function (error) {
   console.log('signUpError is', error)
   showAuthMessage("That didn't work. The username is likely taken. Please try again.")
+  $('input').val('')
 }
 
 const signInSuccess = function (response) {
@@ -27,11 +28,13 @@ const signInSuccess = function (response) {
   setTimeout(clearAuthMessage, 3000)
   events.onCreateGame()
   events.onGetCompletedGames()
+  $('input').val('')
 }
 
 const signInError = function (error) {
   console.log('signInError is', error)
   showAuthMessage('Either your email or password was incorrect. Please try again.')
+  $('input').val('')
 }
 
 const changePasswordSuccess = function (response) {
@@ -40,11 +43,13 @@ const changePasswordSuccess = function (response) {
   $('#change-password-form').addClass('hidden')
   showAuthMessage('Success! Your password has been changed!')
   setTimeout(clearAuthMessage, 3000)
+  $('input').val('')
 }
 
 const changePasswordError = function (error) {
   console.log('changePasswordError is', error)
   showAuthMessage('Oops! Please correct your old password and try again.')
+  $('input').val('')
 }
 
 const signOutSuccess = function (response) {
@@ -67,10 +72,12 @@ const signOutSuccess = function (response) {
   setTimeout(() => {
     showAuthMessage('Please sign in so your score can be tracked!')
   }, 3001)
+  $('input').val('')
 }
 
 const signOutError = function (error) {
   console.log('signOutError is', error)
+  $('input').val('')
 }
 
 const revealForm = function (event) {
