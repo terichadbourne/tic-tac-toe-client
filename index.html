@@ -16,7 +16,13 @@
     <body class="container-fluid">
 
       <nav class="navbar navbar-light bg-light">
-        <h1>Tic Tac Toe</h1>
+        <span class="navbar-brand">Tic Tac Toe</span>
+        <form class="form-inline justify-content-end">
+          <button class="sign-out hidden btn btn-outline-success" type="button">Sign Out</button>
+          <button class="change-password hidden btn btn-outline-success" type="button">Change Password</button>
+          <button class="sign-in btn btn-outline-success" type="button">Sign In</button>
+          <button class="sign-up btn btn-outline-success" type="button">Sign Up</button>
+        </form>
       </nav>
 
       <section id='authentication' class="row">
@@ -38,7 +44,7 @@
           </form>
         </div>
         <div class="change-password hidden">
-          <p class="reveal-form auth-option">Change Password</p>
+          <p class="reveal-form auth-option change-password">Change Password</p>
           <form id="change-password-form" class="hidden">
             <input name="passwords[old]" placeholder='Old Password' type='password' required/>
             <input name="passwords[new]" placeholder='New Password' type='password' required/>
