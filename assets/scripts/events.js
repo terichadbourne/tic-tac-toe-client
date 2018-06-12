@@ -38,7 +38,7 @@ const playHere = function (event) {
       // redisplay symbols on all cells, then swap players
       if ($(event.target).html() === '') {
         store.game.cells[event.target.id] = store.currentTurn
-        // send new move to server (also will run displayCells and checkForWins
+        // send new move to server (also will run displayCells and processMove
         onUpdateGame(event.target.id, store.currentTurn)
       // if cell was occupied, log error and prevent play and turn swap
       } else {
@@ -64,43 +64,6 @@ const swapTurns = function () {
 
 const winningLines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7],
   [2, 5, 8], [0, 4, 8], [2, 4, 6]]
-
-const checkForWins = function () {
-  console.log('inside checkForWins')
-  let winner = null
-  // loop through all potential winning lines...
-  winningLines.forEach((winningLine) => {
-    // write each cell value from this specific winningLine to an array
-    const testArray = []
-    winningLine.forEach((cell) => {
-      testArray.push(store.game.cells[cell])
-    })
-    // check if all values in the array are identical and NOT ''
-    // if so, set winner variable to that value
-    if (testArray[0] === testArray[1] && testArray[1] === testArray[2] &&
-      testArray[0] !== '') {
-      winner = testArray[0]
-    }
-  })
-  // after looping, if a winner was found (value isn't null), alert win
-  if (winner) {
-    onFinishGame()
-    ui.showMessage(`Player ${winner.toUpperCase()} has won the game!`)
-    store[`${winner}Wins`]++
-    ui.updateWins()
-    // hide rematch button
-    $('#rematch-button').removeClass('hidden')
-  // else if no winner but all cells full, alert draw
-  } else if (store.game.cells.every(cellOccupied)) {
-    onFinishGame()
-    ui.showMessage("It's a draw! Click below to start a new game.")
-    // show rematch button
-    $('#rematch-button').removeClass('hidden')
-  // else continue with game
-  } else {
-    swapTurns()
-  }
-}
 
 // callback function returns true if a cell contains an x or o already
 const cellOccupied = (cell) => {
@@ -140,7 +103,7 @@ const onUpdateGame = function (cellIndex, value) {
       store.game = response.game
       console.log('still in onUpdateGame success thingy & store.game is: ', store.game)
       ui.displayCells()
-      checkForWins()
+      processMove()
     })
     .catch((error) => {
       console.log('failed to create new game. error is: ', error)
@@ -148,6 +111,7 @@ const onUpdateGame = function (cellIndex, value) {
 }
 
 const onFinishGame = function () {
+  console.log('RUNNING ONFINISHGAME')
   const data = {
     'game': {
       'over': true
@@ -161,6 +125,10 @@ const onFinishGame = function () {
       store.game = response.game
       console.log('store.game is: ', store.game)
       ui.displayCells()
+      $('#rematch-button').removeClass('hidden')
+      // pull full list of games down (including one just added)
+      // this will automatically run checkForWin
+      onGetCompletedGames()
     })
     .catch((error) => {
       console.log('failed to create new game. error is: ', error)
@@ -168,6 +136,7 @@ const onFinishGame = function () {
 }
 
 const onGetCompletedGames = function () {
+  console.log('RUNNING GETCOMPLETEDGAMES')
   gameApi.getCompletedGames()
     .then((response) => {
       console.log('success retrieving completed games. response was: ', response)
@@ -180,7 +149,7 @@ const onGetCompletedGames = function () {
       store.xDraws = 0
       store.oDraws = 0
       store.games.forEach((game) => {
-        updateWinRecord(game.cells)
+        checkForWin(game.cells)
       })
       ui.updateWins()
     })
@@ -189,13 +158,24 @@ const onGetCompletedGames = function () {
     })
 }
 
+const processMove = function () {
+  console.log('RUNNING processMove')
+  const currentGameStatus = checkForWin(store.game.cells)
+  if (currentGameStatus === 'incomplete') {
+    swapTurns()
+  } else {
+    if (currentGameStatus === 'draw') {
+      ui.showMessage("It's a draw! Click below to start a new game.")
+    } else {
+      ui.showMessage(`Player ${currentGameStatus.toUpperCase()} has won the game!`)
+    }
+    onFinishGame()
+  }
+}
+
 // test a single gaame to find win, draw, incomplete
-const updateWinRecord = function (cellsArray) {
-  console.log('RUNNING updateWinRecord')
-  // console.log('typeof cellsArray inside updateWinRecord: ', typeof cellsArray)
-  // console.log('now testing this cellsArray: ', cellsArray)
-  // console.log('cellsArray[1]: ', cellsArray[1])
-  // notation breaks the code
+const checkForWin = function (cellsArray) {
+  console.log('RUNNING checkForWin')
   let winner = null
   let gameStatus = null
   // loop through all potential winning lines...
@@ -205,20 +185,16 @@ const updateWinRecord = function (cellsArray) {
     winningLine.forEach((cellIndex) => {
       testArray.push(cellsArray[cellIndex])
     })
-    // console.log('testArray this time through winningLines.forEach is: ', testArray)
     // check if all values in the array are identical and NOT ''
     // if so, set winner variable to that value
     if (testArray[0] === testArray[1] && testArray[1] === testArray[2] &&
       testArray[0] !== '') {
-      // console.log('found a winner while looping through this winningLine: ', winningLine)
       winner = testArray[0]
-      // console.log('winner as found in winningLines.forEach is: ', winner)
     }
   })
   // after looping, if a winner was found (value isn't null), alert win
   if (winner) {
     gameStatus = winner
-    // console.log('found winner: ', winner)
     store[`${winner}Wins`]++
   // else if no winner but all cells full, add to both draw records
   // we know the board is full because the game was marked over w/o a win
@@ -229,12 +205,7 @@ const updateWinRecord = function (cellsArray) {
   } else {
     gameStatus = 'incomplete'
   }
-  console.log('results of updateWinRecord: ')
-  console.log('store.xWins: ', store.xWins)
-  console.log('store.oWins: ', store.oWins)
-  console.log('store.xDraws: ', store.xDraws)
-  console.log('store.oDraws: ', store.oDraws)
-  console.log('game.status in updateWinRecord: ', gameStatus)
+  console.log('game.status in checkForWin: ', gameStatus)
   return gameStatus
 }
 
@@ -242,7 +213,7 @@ module.exports = {
   addHandlers: addHandlers,
   swapTurns: swapTurns,
   playHere: playHere,
-  checkForWins: checkForWins,
+  processMove: processMove,
   cellOccupied: cellOccupied,
   winningLines: winningLines,
   startNewGame: startNewGame,
@@ -250,5 +221,5 @@ module.exports = {
   onUpdateGame: onUpdateGame,
   onFinishGame: onFinishGame,
   onGetCompletedGames: onGetCompletedGames,
-  updateWinRecord: updateWinRecord
+  checkForWin: checkForWin
 }
