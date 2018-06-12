@@ -150,9 +150,11 @@ const onGetCompletedGames = function () {
       store.oWins = 0
       store.xDraws = 0
       store.oDraws = 0
-      store.games.forEach((game) => {
-        checkForWin(game.cells)
-      })
+      if (store.games.length > 0) {
+        store.games.forEach((game) => {
+          checkForWin(game.cells)
+        })
+      }
       ui.updateWins()
     })
     .catch((error) => {

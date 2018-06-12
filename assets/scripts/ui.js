@@ -21,6 +21,7 @@ const displayCells = function () {
 }
 
 const updateWins = function () {
+  console.log('running ui.UpdateWins')
   $('#player-x-wins').html(store.xWins)
   $('#player-o-wins').html(store.oWins)
   $('#player-x-draws').html(store.xDraws)

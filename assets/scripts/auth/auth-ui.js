@@ -58,10 +58,16 @@ const signOutSuccess = function (response) {
   // delete game and user records from database
   delete store.user
   delete store.game
+  store.xWins = 0
+  store.xDraws = 0
+  store.oWins = 0
+  store.oDraws = 0
   // clear cell contents
   $('.game-cell').html('')
   console.log('You were successfully signed out')
   console.log('store.user after deleting it: ', store.user)
+  clearAuthForms()
+  ui.updateWins()
   $('.sign-up').removeClass('hidden')
   $('.sign-in').removeClass('hidden')
   $('.sign-out').addClass('hidden')
@@ -72,7 +78,6 @@ const signOutSuccess = function (response) {
   setTimeout(() => {
     showAuthMessage('Please sign in so your score can be tracked!')
   }, 3001)
-  clearAuthForms()
 }
 
 const signOutError = function (error) {
