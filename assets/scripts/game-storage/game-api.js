@@ -84,8 +84,70 @@ const updateGame = function (data) {
 // ***********************************************
 
 // SHOW ALL OF USER'S GAMES
+const getCompletedGames = function () {
+  return $.ajax({
+    method: 'GET',
+    url: config.apiUrl + '/games?over=true',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
 
+// The index action is a GET that retrieves all the games associated with a user. The response body will contain JSON containing an array of games, e.g.:
+//
+// {
+//   "games": [
+//     {
+//       "id": 1,
+//       "cells": ["o","x","o","x","o","x","o","x","o"],
+//       "over": true,
+//       "player_x": {
+//         "id": 1,
+//         "email": "and@and.com"
+//       },
+//       "player_o": {
+//         "id": 3,
+//         "email": "dna@dna.com"
+//       }
+//     },
+//     {
+//       "id": 2,
+//       "cells": ["","","","","","","","",""],
+//       "over": false,
+//       "player_x": {
+//         "id": 3,
+//         "email": "dna@dna.com"
+//       },
+//       "player_o": {
+//         "id": 1,
+//         "email": "and@and.com"
+//       }
+//     }
+//   ]
+// }
+// If the over query parameter is specified the results will be restricted accordingly.
+//
+// If there are no games associated with the user, the response body will contain an empty games array, e.g.:
+//
+// {
+//   "games": [
+//   ]
+// }
+// Example of using the optional query parameter:
+// End point to fetch all of a user's games
+//
+// /games
+// End point to fetch all of a user's games that are over
+//
+// /games?over=true
+// End point to fetch all of a user's games that are not over
+//
+// /games?over=false
+//
+//
 module.exports = {
   createGame: createGame,
-  updateGame: updateGame
+  updateGame: updateGame,
+  getCompletedGames: getCompletedGames
 }

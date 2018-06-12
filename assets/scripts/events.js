@@ -167,6 +167,76 @@ const onFinishGame = function () {
     })
 }
 
+const onGetCompletedGames = function () {
+  gameApi.getCompletedGames()
+    .then((response) => {
+      console.log('success retrieving completed games. response was: ', response)
+      store.games = response.games
+      console.log('saved completed games as store.games like this: ', store.games)
+      console.log('store.games.length: ', store.games.length)
+      console.log('store.games[0].cells: ', store.games[0].cells)
+      store.xWins = 0
+      store.oWins = 0
+      store.xDraws = 0
+      store.oDraws = 0
+      store.games.forEach((game) => {
+        updateWinRecord(game.cells)
+      })
+      ui.updateWins()
+    })
+    .catch((error) => {
+      console.log('error retrieving games was: ', error)
+    })
+}
+
+// test a single gaame to find win, draw, incomplete
+const updateWinRecord = function (cellsArray) {
+  // console.log('inside updateWinRecord')
+  // console.log('typeof cellsArray inside updateWinRecord: ', typeof cellsArray)
+  // console.log('now testing this cellsArray: ', cellsArray)
+  // console.log('cellsArray[1]: ', cellsArray[1])
+  // notation breaks the code
+  let winner = null
+  let gameStatus = null
+  // loop through all potential winning lines...
+  winningLines.forEach((winningLine) => {
+    // write each cell value from this specific winningLine to an array
+    const testArray = []
+    winningLine.forEach((cellIndex) => {
+      testArray.push(cellsArray[cellIndex])
+    })
+    console.log('testArray this time through winningLines.forEach is: ', testArray)
+    // check if all values in the array are identical and NOT ''
+    // if so, set winner variable to that value
+    if (testArray[0] === testArray[1] && testArray[1] === testArray[2] &&
+      testArray[0] !== '') {
+      // console.log('found a winner while looping through this winningLine: ', winningLine)
+      winner = testArray[0]
+      // console.log('winner as found in winningLines.forEach is: ', winner)
+    }
+  })
+  // after looping, if a winner was found (value isn't null), alert win
+  if (winner) {
+    gameStatus = winner
+    console.log('found winner: ', winner)
+    store[`${winner}Wins`]++
+    console.log('store.xWins: ', store.xWins)
+    console.log('store.oWins: ', store.oWins)
+  // else if no winner but all cells full, add to both draw records
+  // we know the board is full because the game was marked over w/o a win
+  } else if (cellsArray.every(cellOccupied)) {
+    gameStatus = 'draw'
+    store[`xDraws`]++
+    store[`oDraws`]++
+    console.log('store.xDraws: ', store.xDraws)
+    console.log('store.oDraws: ', store.oDraws)
+  } else {
+    gameStatus = 'incomplete'
+  }
+  console.log('game.status in updateWinRecord: ', gameStatus)
+  return gameStatus
+}
+
 module.exports = {
   addHandlers: addHandlers,
   swapTurns: swapTurns,
@@ -177,5 +247,7 @@ module.exports = {
   startNewGame: startNewGame,
   onCreateGame: onCreateGame,
   onUpdateGame: onUpdateGame,
-  onFinishGame: onFinishGame
+  onFinishGame: onFinishGame,
+  onGetCompletedGames: onGetCompletedGames,
+  updateWinRecord: updateWinRecord
 }

@@ -23,6 +23,8 @@ const displayCells = function () {
 const updateWins = function () {
   $('#player-x-wins').html(store.xWins)
   $('#player-o-wins').html(store.oWins)
+  $('#player-x-draws').html(store.xDraws)
+  $('#player-o-draws').html(store.oDraws)
 }
 
 module.exports = {

@@ -26,6 +26,7 @@ const signInSuccess = function (response) {
   showAuthMessage("Success! You're now signed in as Player X!")
   setTimeout(clearAuthMessage, 3000)
   events.onCreateGame()
+  events.onGetCompletedGames()
 }
 
 const signInError = function (error) {
