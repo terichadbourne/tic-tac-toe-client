@@ -2,6 +2,10 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
+a {
+  color: pink;
+}
+
 body {
   text-align: center;
 }
@@ -15,9 +19,24 @@ button {
   margin: 10px auto;
 }
 
+nav button {
+  float: right;
+  background-color: white;
+  color: black;
+  margin: 10px;
+}
+
 footer {
   background-color: black;
   color: white;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  vertical-align: middle;
 }
 
 input {
@@ -35,10 +54,6 @@ nav > h1 {
   margin: 0;
 }
 
-p.auth-option {
-  margin-bottom: 0;
-}
-
 p.auth-alert {
   background-color: pink;
   border-bottom: thin white solid;
@@ -48,27 +63,35 @@ p.auth-alert {
   margin-bottom: 0;
 }
 
-.auth-option {
-  background-color: black;
-  color: white;
-  border-top: thin white solid;
-  padding: 5px 0;
-}
-
 .container-fluid {
   padding: 0;
 }
 
 .game-cell {
-  background-color: pink;
-  border: thin black solid;
-  color: black;
+  color: purple;
   font-size: 50px;
-  height: 25vw;
-  line-height: 25vw;
+  height: 30vw;
+  line-height: 30vw;
   text-align: center;
   vertical-align: middle;
-  width: 25vw;
+  width: 30vw;
+  border: thick solid purple;
+}
+
+.game-row:first-of-type > .game-cell {
+  border-top: none;
+}
+
+.game-row:last-of-type > .game-cell {
+  border-bottom: none;
+}
+
+.game-row > .game-cell:first-of-type {
+  border-left: none;
+}
+
+.game-row > .game-cell:last-of-type {
+  border-right: none;
 }
 
 .hidden {
@@ -102,13 +125,17 @@ p.auth-alert {
   font-weight: bold;
 }
 
+.winning-cell {
+  background-color: pink;
+}
+
 #authentication {
   background-color: gray;
 }
 
 #game-board {
   margin: 15px auto;
-  width: 75vw;
+  width: 90vw;
 }
 
 #message {
@@ -127,4 +154,51 @@ p.auth-alert {
   background-color: pink;
   border: thick solid purple;
   font-weight: bold;
+}
+
+@media screen and (min-width: 400px) and (max-width: 759px) {
+  .game-cell {
+    width: 110px;
+    height: 110px;
+    line-height: 110px;
+    font-size: 75px;
+  }
+
+  #game-board {
+    width: 330px;
+  }
+}
+
+@media screen and (min-width: 760px) {
+  .game-cell {
+    height: 150px;
+    line-height: 150px;
+    width: 150px;
+    font-size: 100px;
+  }
+
+  main {
+    min-height: 500px;
+  }
+
+  .game-row {
+    width: 450px;
+    margin: auto;
+  }
+
+  #game-board {
+    width: 60vw;
+  }
+
+  #stats-n-stuff {
+    background-color: #D0D0D0;
+    width: 40vw;
+    height: 100vh;
+
+  }
+
+  #stats-n-stuff,
+  #game-board {
+    float: right;
+  }
 }

@@ -76,6 +76,8 @@ const onCreateGame = function () {
     .then((response) => {
       console.log('succeeded at creating new game and response is: ', response)
       store.game = response.game
+      ui.hideWinningCells()
+      store.winningCells = []
       console.log('CREATED NEW GAME and store.game is: ', store.game)
       ui.displayCells()
       // empty contents game cells & update win counts
@@ -168,6 +170,7 @@ const processMove = function () {
       ui.showMessage("It's a draw! Click below to start a new game.")
     } else {
       ui.showMessage(`Player ${currentGameStatus.toUpperCase()} has won the game!`)
+      ui.showWinningCells()
     }
     onFinishGame()
   }
@@ -190,12 +193,15 @@ const checkForWin = function (cellsArray) {
     if (testArray[0] === testArray[1] && testArray[1] === testArray[2] &&
       testArray[0] !== '') {
       winner = testArray[0]
+      store.winningCells = [winningLine[0], winningLine[1], winningLine[2]]
+      console.log('store.winningCells: ', store.winningCells)
     }
   })
   // after looping, if a winner was found (value isn't null), alert win
   if (winner) {
     gameStatus = winner
     store[`${winner}Wins`]++
+    console.log('store.winningCells: ', store.winningCells)
   // else if no winner but all cells full, add to both draw records
   // we know the board is full because the game was marked over w/o a win
   } else if (cellsArray.every(cellOccupied)) {
