@@ -37,8 +37,9 @@ laid out a plan of attack for this project.
 
 With a responsive design in mind, I developed the following wireframes before
 starting on development:
-- [Desktop wireframe](https://git.generalassemb.ly/terichadbourne/game-project-scope-study/blob/response/images/DesktopWireframe.JPG)
-- [Mobile wireframe](https://git.generalassemb.ly/terichadbourne/game-project-scope-study/blob/response/images/MobileWireframe.JPG)
+- [Desktop wireframe](https://github.com/terichadbourne/tic-tac-toe-client/blob/master/assets/wireframes/DesktopWireframe.JPG)
+- [Mobile wireframe](https://github.com/terichadbourne/tic-tac-toe-client/blob/master/assets/wireframes/MobileWireframe.JPG)
+
 
 TODO: Move these files into this repo and update links.
 
