@@ -54,10 +54,8 @@ nav > h1 {
   margin: 0;
 }
 
-p.auth-alert {
-  background-color: pink;
-  border-bottom: thin white solid;
-  border-top: thin white solid;
+.auth-alert-main,
+.auth-alert-modal {
   color: purple;
   font-weight: bold;
   margin-bottom: 0;
@@ -139,7 +137,6 @@ p.auth-alert {
 }
 
 #message {
-  border-radius: 5px;
   color: purple;
   font-size: 18px;
   padding: 5px;
