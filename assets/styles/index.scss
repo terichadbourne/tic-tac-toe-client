@@ -9,7 +9,7 @@ a {
 
 body {
   text-align: center;
-  background-color: $off-white;
+  background-color: $pink;
 }
 
 button {
@@ -118,7 +118,7 @@ nav {
 }
 
 .player.active {
-  background-color: $pink;
+  background-color: $teal;
   border: solid $purple;
   font-weight: bold;
 }
@@ -181,6 +181,11 @@ nav {
 
   #game-board {
     width: 60vw;
+  }
+
+  .player.active {
+    background-color: $pink;
+    font-weight: bold;
   }
 
   #stats-n-stuff {
