@@ -1,42 +1,45 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
+@import 'colors';
 
 a {
-  color: pink;
+  color: $teal;
 }
 
 body {
   text-align: center;
+  background-color: $off-white;
 }
 
 button {
-  border-color: purple;
+  border-color: $purple;
   border-radius: 10px;
-  color: purple;
+  color: $purple;
   display: block;
   font-size: 16px;
   margin: 10px auto;
 }
 
 nav button {
+  background-color: $pink;
+  color: $purple;
   float: right;
-  background-color: white;
-  color: black;
   margin: 10px;
+  border: thick solid $teal;
 }
 
 footer {
-  background-color: black;
-  color: white;
-  position: fixed;
-  left: 0;
+  background-color: $purple;
   bottom: 0;
-  width: 100%;
-  text-align: center;
+  color: $pink;
   height: 30px;
+  left: 0;
   line-height: 30px;
+  position: fixed;
+  text-align: center;
   vertical-align: middle;
+  width: 100%;
 }
 
 input {
@@ -45,18 +48,14 @@ input {
 }
 
 nav {
-  background-color: black;
-  color: white;
-  margin: 0;
-}
-
-nav > h1 {
+  background-color: $purple;
+  color: $teal;
   margin: 0;
 }
 
 .auth-alert-main,
 .auth-alert-modal {
-  color: purple;
+  color: $purple;
   font-weight: bold;
   margin-bottom: 0;
 }
@@ -66,30 +65,30 @@ nav > h1 {
 }
 
 .game-cell {
-  color: purple;
+  border: thick solid $purple;
+  color: $purple;
   font-size: 50px;
   height: 30vw;
   line-height: 30vw;
   text-align: center;
   vertical-align: middle;
   width: 30vw;
-  border: thick solid purple;
 }
 
 .game-row:first-of-type > .game-cell {
-  border-top: none;
+  border-top: 0;
 }
 
 .game-row:last-of-type > .game-cell {
-  border-bottom: none;
+  border-bottom: 0;
 }
 
 .game-row > .game-cell:first-of-type {
-  border-left: none;
+  border-left: 0;
 }
 
 .game-row > .game-cell:last-of-type {
-  border-right: none;
+  border-right: 0;
 }
 
 .hidden {
@@ -101,9 +100,10 @@ nav > h1 {
 }
 
 .player {
-  border: thin solid purple;
+  border: thin solid $purple;
+  background-color: $off-white;
   border-radius: 20px;
-  color: purple;
+  color: $purple;
   display: inline-block;
   font-size: 16px;
   font-weight: normal;
@@ -118,17 +118,13 @@ nav > h1 {
 }
 
 .player.active {
-  background-color: pink;
-  border: solid purple;
+  background-color: $pink;
+  border: solid $purple;
   font-weight: bold;
 }
 
 .winning-cell {
-  background-color: pink;
-}
-
-#authentication {
-  background-color: gray;
+  background-color: $pink;
 }
 
 #game-board {
@@ -137,7 +133,7 @@ nav > h1 {
 }
 
 #message {
-  color: purple;
+  color: $purple;
   font-size: 18px;
   padding: 5px;
   text-align: center;
@@ -148,17 +144,17 @@ nav > h1 {
 }
 
 #rematch-button {
-  background-color: pink;
-  border: thick solid purple;
+  background-color: $pink;
+  border: thick solid $purple;
   font-weight: bold;
 }
 
 @media screen and (min-width: 400px) and (max-width: 759px) {
   .game-cell {
-    width: 110px;
+    font-size: 75px;
     height: 110px;
     line-height: 110px;
-    font-size: 75px;
+    width: 110px;
   }
 
   #game-board {
@@ -168,10 +164,10 @@ nav > h1 {
 
 @media screen and (min-width: 760px) {
   .game-cell {
+    font-size: 100px;
     height: 150px;
     line-height: 150px;
     width: 150px;
-    font-size: 100px;
   }
 
   main {
@@ -179,8 +175,8 @@ nav > h1 {
   }
 
   .game-row {
-    width: 450px;
     margin: auto;
+    width: 450px;
   }
 
   #game-board {
@@ -188,10 +184,9 @@ nav > h1 {
   }
 
   #stats-n-stuff {
-    background-color: #D0D0D0;
-    width: 40vw;
+    background-color: $teal;
     height: 100vh;
-
+    width: 40vw;
   }
 
   #stats-n-stuff,
