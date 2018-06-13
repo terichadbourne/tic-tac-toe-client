@@ -95,7 +95,7 @@ Given more time, I'd love to work on the following challenges:
 
 #### Adding New Functionality
 - Create a single-device offline mode that allows play without a login or
-internet connection
+internet connection (see work in progress in 'offline' feature branch)
 - Enable two users to play from separate devices, using the [muliplayer API](https://git.generalassemb.ly/ga-wdi-boston/game-project-api/blob/master/docs/game-multiplayer.md)
 - Allow users to choose from a selection of symbols to represent them on the
 board
