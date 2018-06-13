@@ -1,21 +1,24 @@
 'use strict'
 
+// require dependcies
 const store = require('./store')
 const ui = require('./ui')
 const gameApi = require('./game-storage/game-api')
 
-// all event handlers
+// add event handlers for clicking on game board and for rematch button
 const addHandlers = function () {
   $('.game-cell').on('click', playHere)
   $('#rematch-button').on('click', startNewGame)
 }
 
+// start new game when rematch button is clicked
 const startNewGame = function (event) {
   // clear message display
   ui.clearMessage()
   // set game state and current turn and clear out cells array
   store.currentTurn = 'x'
   delete store.game
+  // create new game on the server
   onCreateGame()
   // set player x active and player o inactive
   $('#player-x').addClass('active')
@@ -24,6 +27,7 @@ const startNewGame = function (event) {
   $('#rematch-button').addClass('hidden')
 }
 
+// steps to take when user clicks on a cell on the game board
 const playHere = function (event) {
   // clear any previous messages
   ui.clearMessage()
@@ -51,6 +55,7 @@ const playHere = function (event) {
   }
 }
 
+// swap players' turns after a successful move (called from processMove)
 const swapTurns = function () {
   // swap value of store.currentTurn and toggle active classes
   if (store.currentTurn === 'x') {
@@ -62,6 +67,8 @@ const swapTurns = function () {
   }
 }
 
+// array of arrays representing each set of cell indexes that represents a
+// winning line
 const winningLines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7],
   [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
@@ -70,25 +77,29 @@ const cellOccupied = (cell) => {
   return cell === 'x' || cell === 'o'
 }
 
+// run when new player is logged in or new game is rquested, to create a new
+// game on the server and update the UI
 const onCreateGame = function () {
-  console.log('inside onCreateGame and store.user.token is: ', store.user.token)
   gameApi.createGame()
+    // if request to server is successful...
     .then((response) => {
-      console.log('succeeded at creating new game and response is: ', response)
+      // save retrieved game record to local storage
       store.game = response.game
+      // refresh display, contents of game cells, win counts, etc.
       ui.hideWinningCells()
       store.winningCells = []
-      console.log('CREATED NEW GAME and store.game is: ', store.game)
       ui.displayCells()
-      // empty contents game cells & update win counts
       ui.updateWins()
     })
+    // if new game isn't created, log error
     .catch((error) => {
-      console.log('failed to create new game. error is: ', error)
+      ui.displayMessage("Something went wrong. We couldn't create a new game on the server. Quick, show this error message to the nearest developer: ", error)
     })
 }
 
+// save current game state to server and udpate display after each move
 const onUpdateGame = function (cellIndex, value) {
+  // gather data needed for AJAX call
   const data = {
     'game': {
       'cell': {
@@ -98,85 +109,104 @@ const onUpdateGame = function (cellIndex, value) {
       'over': store.game.over
     }
   }
-  console.log('inside onUpdateGame, data about to be sent to server is: ', data)
+  // send revised data to server
   gameApi.updateGame(data)
+    // if move is successfully written to server...
     .then((response) => {
-      console.log('succeeded at updating game and response is: ', response)
+      // save response to local storage
       store.game = response.game
-      console.log('still in onUpdateGame success thingy & store.game is: ', store.game)
+      // refresh display to add x or o
       ui.displayCells()
+      // process move (check for wins, etc.)
       processMove()
     })
+    // if call to server fails, log the error
     .catch((error) => {
-      console.log('failed to create new game. error is: ', error)
+      ui.displayMessage("Something went wrong. We couldn't save that move to the server. Quick, show this error message to the nearest developer: ", error)
     })
 }
 
+// run when game is over to update status on server
 const onFinishGame = function () {
-  console.log('RUNNING ONFINISHGAME')
+  // format data to show game is over
   const data = {
     'game': {
       'over': true
     }
   }
-  console.log('inside onFinishGame, data is: ', data)
+  // send to server
   gameApi.updateGame(data)
+    // if update is successful...
     .then((response) => {
-      console.log('succeeded at finishing game and response is: ')
-      console.log(response)
+      // save response as current game state
       store.game = response.game
-      console.log('store.game is: ', store.game)
+      // update display and show rematch button
       ui.displayCells()
       $('#rematch-button').removeClass('hidden')
-      // pull full list of games down (including one just added)
-      // this will automatically run checkForWin
+      // request full list of user's games (including one just added)
+      // (this will automatically run checkForWin)
       onGetCompletedGames()
     })
+    // if update fails, log the error
     .catch((error) => {
-      console.log('failed to create new game. error is: ', error)
+      ui.displayMessage("Something went wrong. We couldn't let the server know that this game is over. Quick, show this error message to the nearest developer: ", error)
     })
 }
 
+// fetch record of user's completed games and use data to update stats displayed
 const onGetCompletedGames = function () {
-  console.log('RUNNING GETCOMPLETEDGAMES')
+  // call to server to retrieve list of completed games
   gameApi.getCompletedGames()
+    // if successful...
     .then((response) => {
+      // save returned data locally
       store.games = response.games
+      // reset win and draw counts for reprocessing
       store.xWins = 0
       store.oWins = 0
       store.xDraws = 0
       store.oDraws = 0
+      // if there are any games returned, determine the winner of each and
+      // adjust counts
       if (store.games.length > 0) {
         store.games.forEach((game) => {
           checkForWin(game.cells)
         })
       }
+      // display win and draw counts on page
       ui.updateWins()
     })
+    // if unsuccessful, log error to console
     .catch((error) => {
-      console.log('error retrieving games was: ', error)
+      ui.displayMessage("Something went wrong. We couldn't retrieve your game hisotry from the server. Quick, show this error message to the nearest developer: ", error)
     })
 }
 
+// process latest move made to check for a win or swap turns accordingly
 const processMove = function () {
-  console.log('RUNNING processMove')
+  // update winner and winningCells variables using checkForWin function,
+  // which returns x, o, draw, or incomplete
   const currentGameStatus = checkForWin(store.game.cells)
+  // if game is incomplete, swap turns
   if (currentGameStatus === 'incomplete') {
     swapTurns()
   } else {
+    // if a draw, alert user
     if (currentGameStatus === 'draw') {
       ui.showMessage("It's a draw! Click below to start a new game.")
+    // if a win, alert user and highlght winning cells
     } else {
       ui.showMessage(`Player ${currentGameStatus.toUpperCase()} has won the game!`)
       ui.showWinningCells()
     }
+    // for any completed game, update completed status on server
     onFinishGame()
   }
 }
 
 // test a single gaame to find win, draw, incomplete
 const checkForWin = function (cellsArray) {
-  console.log('RUNNING checkForWin')
+  // temporaty variables
   let winner = null
   let gameStatus = null
   // loop through all potential winning lines...
@@ -192,24 +222,24 @@ const checkForWin = function (cellsArray) {
       testArray[0] !== '') {
       winner = testArray[0]
       store.winningCells = [winningLine[0], winningLine[1], winningLine[2]]
-      console.log('store.winningCells: ', store.winningCells)
     }
   })
-  // after looping, if a winner was found (value isn't null), alert win
+  // after looping, if a winner was found (value isn't null), increase
+  // appropriate win count and update gameStatus
   if (winner) {
     gameStatus = winner
     store[`${winner}Wins`]++
-    console.log('store.winningCells: ', store.winningCells)
-  // else if no winner but all cells full, add to both draw records
-  // we know the board is full because the game was marked over w/o a win
+  // else if no winner but all cells full, add to both draw records and updates
+  // gameStatus
   } else if (cellsArray.every(cellOccupied)) {
     gameStatus = 'draw'
     store[`xDraws`]++
     store[`oDraws`]++
+  // else if no win or draw, set gameStatus to incomplete
   } else {
     gameStatus = 'incomplete'
   }
-  console.log('game.status in checkForWin: ', gameStatus)
+  // return gameStatus as "x", "o", "draw", or "incomplete"
   return gameStatus
 }
 

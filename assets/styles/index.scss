@@ -8,8 +8,8 @@ a {
 }
 
 body {
-  text-align: center;
   background-color: $pink;
+  text-align: center;
 }
 
 button {
@@ -23,10 +23,10 @@ button {
 
 nav button {
   background-color: $pink;
+  border: thick solid $teal;
   color: $purple;
   float: right;
   margin: 10px;
-  border: thick solid $teal;
 }
 
 footer {
@@ -100,8 +100,8 @@ nav {
 }
 
 .player {
-  border: thin solid $purple;
   background-color: $off-white;
+  border: thin solid $purple;
   border-radius: 20px;
   color: $purple;
   display: inline-block;
@@ -163,6 +163,10 @@ nav {
 }
 
 @media screen and (min-width: 760px) {
+  main {
+    min-height: 500px;
+  }
+
   .game-cell {
     font-size: 100px;
     height: 150px;
@@ -170,21 +174,9 @@ nav {
     width: 150px;
   }
 
-  main {
-    min-height: 500px;
-  }
-
   .game-row {
     margin: auto;
     width: 450px;
-  }
-
-  #rematch-button {
-    background-color: $pink;
-  }
-
-  #game-board {
-    width: 60vw;
   }
 
   .player.active {
@@ -192,14 +184,22 @@ nav {
     font-weight: bold;
   }
 
+  #game-board {
+    width: 60vw;
+  }
+
+  #game-board,
+  #stats-n-stuff {
+    float: right;
+  }
+
+  #rematch-button {
+    background-color: $pink;
+  }
+
   #stats-n-stuff {
     background-color: $teal;
     height: 100vh;
     width: 40vw;
-  }
-
-  #stats-n-stuff,
-  #game-board {
-    float: right;
   }
 }

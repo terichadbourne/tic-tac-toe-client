@@ -6,15 +6,13 @@ const events = require('../events')
 
 // run on sign up error
 const signUpError = function (error) {
-  console.log('signUpError is', error)
-  showAuthMessage("That didn't work. The username is likely taken. Please try again.")
+  showAuthMessage('That email is already taken. Please pick a new one or sign in to an existing account instead.')
   clearAuthForms()
 }
 
 // run on sign in success
 // (also run after successful sign-up leads to automatic sign-in, if successful)
 const signInSuccess = function (response) {
-  console.log('signInSucces response is ', response)
   // if there was a message about needing to sign in, remove it
   ui.clearMessage()
   // store data retricved from server
@@ -39,9 +37,8 @@ const signInSuccess = function (response) {
 
 // run on sign-in error
 const signInError = function (error) {
-  console.log('signInError is', error)
   // display error message and clear form fields
-  showAuthMessage('Either your email or password was incorrect. Please try again or sign up instead.')
+  showAuthMessage('Email or password was incorrect. Please try again or sign up for a new account instead.')
   clearAuthForms()
 }
 
@@ -57,7 +54,6 @@ const changePasswordSuccess = function (response) {
 
 // run password change fails
 const changePasswordError = function (error) {
-  console.log('changePasswordError is', error)
   // display error message and clear form fields
   showAuthMessage('Oops! Please correct your old password and try again.')
   clearAuthForms()
@@ -94,9 +90,8 @@ const signOutSuccess = function (response) {
 
 // run on sign-out error
 const signOutError = function (error) {
-  // log error and clear auth forms
-  console.log('signOutError is', error)
-  showAuthMessage("Something went wrong. You're still logged in.")
+  // show error and clear auth forms
+  showAuthMessage("Something went wrong. You're still logged in. Quick, show this error message to the nearest developer: ", error)
   clearAuthForms()
 }
 
