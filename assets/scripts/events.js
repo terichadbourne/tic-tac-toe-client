@@ -141,11 +141,7 @@ const onGetCompletedGames = function () {
   console.log('RUNNING GETCOMPLETEDGAMES')
   gameApi.getCompletedGames()
     .then((response) => {
-      console.log('success retrieving completed games. response was: ', response)
       store.games = response.games
-      console.log('saved completed games as store.games like this: ', store.games)
-      console.log('store.games.length: ', store.games.length)
-      console.log('store.games[0].cells: ', store.games[0].cells)
       store.xWins = 0
       store.oWins = 0
       store.xDraws = 0
