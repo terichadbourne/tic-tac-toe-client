@@ -124,7 +124,7 @@ nav {
 }
 
 .winning-cell {
-  background-color: $pink;
+  background-color: $teal;
 }
 
 #game-board {
@@ -144,7 +144,7 @@ nav {
 }
 
 #rematch-button {
-  background-color: $pink;
+  background-color: $teal;
   border: thick solid $purple;
   font-weight: bold;
 }
@@ -177,6 +177,10 @@ nav {
   .game-row {
     margin: auto;
     width: 450px;
+  }
+
+  #rematch-button {
+    background-color: $pink;
   }
 
   #game-board {
