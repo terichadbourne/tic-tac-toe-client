@@ -93,7 +93,7 @@ const onCreateGame = function () {
     })
     // if new game isn't created, log error
     .catch((error) => {
-      console.log('failed to create new game. error is: ', error)
+      ui.displayMessage("Something went wrong. We couldn't create a new game on the server. Quick, show this error message to the nearest developer: ", error)
     })
 }
 
@@ -122,7 +122,7 @@ const onUpdateGame = function (cellIndex, value) {
     })
     // if call to server fails, log the error
     .catch((error) => {
-      console.log('failed to create new game. error is: ', error)
+      ui.displayMessage("Something went wrong. We couldn't save that move to the server. Quick, show this error message to the nearest developer: ", error)
     })
 }
 
@@ -149,7 +149,7 @@ const onFinishGame = function () {
     })
     // if update fails, log the error
     .catch((error) => {
-      console.log('failed to create new game. error is: ', error)
+      ui.displayMessage("Something went wrong. We couldn't let the server know that this game is over. Quick, show this error message to the nearest developer: ", error)
     })
 }
 
@@ -178,7 +178,7 @@ const onGetCompletedGames = function () {
     })
     // if unsuccessful, log error to console
     .catch((error) => {
-      console.log('error retrieving games was: ', error)
+      ui.displayMessage("Something went wrong. We couldn't retrieve your game hisotry from the server. Quick, show this error message to the nearest developer: ", error)
     })
 }
 
