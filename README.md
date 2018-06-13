@@ -1,7 +1,7 @@
 # Tic Tac Toe
 
-## Teri Chadbourne
-
+A tic tac toe client built from scratch with JavaScript and jQuery, connected
+to a backend API for user authentication and game state storage.
 
 ### About This Project
 
@@ -40,9 +40,6 @@ starting on development:
 - [Desktop wireframe](https://github.com/terichadbourne/tic-tac-toe-client/blob/master/assets/wireframes/DesktopWireframe.JPG)
 - [Mobile wireframe](https://github.com/terichadbourne/tic-tac-toe-client/blob/master/assets/wireframes/MobileWireframe.JPG)
 
-
-TODO: Move these files into this repo and update links.
-
 #### User Stories
 
 I also developed a partial list of user stories to highlight development
@@ -62,12 +59,12 @@ I can [celebrate accordingly].
 
 #### Work Process
 
-My work process was laid out in advance:
+My work process adhered to these principles:
 
 - Start with the proposed timeline as a guide to stay on track.
 - Thoroughly review the API docs before writing any of my own code.
 - Build data structure based on requirements of existing API.
-- Use psuedocode before writing any real code, and include comments as I go.
+- Use pseudocode before writing any real code, and include comments as I go.
 - Commit frequently.
 - Separate gameplay work from authentication work.
 - Meet all basic requirements before starting on enhancements.
@@ -92,6 +89,7 @@ To keep code manageable, I used Node modules to enforce separation of concerns:
 Given more time, I'd love to work on the following challenges:
 
 #### Improving Existing Code
+- Add custom form validation
 - Refactor my code to reduce repitition
 - Improve styling for better responsiveness as the viewport changes size
 
