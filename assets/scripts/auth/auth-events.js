@@ -4,28 +4,26 @@ const getFormFields = require('../../../lib/get-form-fields')
 const authApi = require('./auth-api')
 const authUi = require('./auth-ui')
 
+// event handlers for...
 const addHandlers = function () {
+  // auth-related buttons
   $('#signup-form').on('submit', onSignUp)
   $('#signin-form').on('submit', onSignIn)
   $('#change-password-form').on('submit', onChangePassword)
   $('.sign-out').on('click', onSignOut)
+  // clicking out of a modal
   $('button[data-dismiss]').on('click', authUi.clearAuthForms)
 }
 
-// SIGN UP
-//
-// expected responses:
-//
-// successful: JSON as follows...
-//
+// SIGN UP expected responses:
+// * successful: JSON as follows...
 // {
 //   "user": {
 //     "id": 1,
 //     "email": "an@example.email"
 //   }
 // }
-//
-// unsuccessful, HTTP Status of 400 Bad Request (empty body)
+// * unsuccessful, HTTP Status of 400 Bad Request (empty body)
 
 const onSignUp = function (event) {
   event.preventDefault()
@@ -41,12 +39,8 @@ const onSignUp = function (event) {
     .catch(authUi.signUpError)
 }
 
-// SIGN IN
-//
-// expected responses:
-//
-// successful: JSON as follows...
-//
+// SIGN IN expected responses:
+// * successful: JSON as follows...
 // {
 //   "user": {
 //     "id": 1,
@@ -54,8 +48,7 @@ const onSignUp = function (event) {
 //     "token": "an example authentication token"
 //   }
 // }
-//
-// unsuccessful: HTTP Status of 401 Unauthorized (empty body)
+// * unsuccessful: HTTP Status of 401 Unauthorized (empty body)
 
 const onSignIn = function (event) {
   event.preventDefault()
@@ -68,13 +61,9 @@ const onSignIn = function (event) {
     .catch(authUi.signInError)
 }
 
-// CHANGE PASSWORD
-//
-// expected responses:
-//
-// successful: HTTP status of 204 No Content (no body)
-//
-// unsuccessful: HTTP status of 400 Bad Request (no body)
+// CHANGE PASSWORD expected responses:
+// * successful: HTTP status of 204 No Content (no body)
+// * unsuccessful: HTTP status of 400 Bad Request (no body)
 
 const onChangePassword = function (event) {
   event.preventDefault()
@@ -87,13 +76,9 @@ const onChangePassword = function (event) {
     .catch(authUi.changePasswordError)
 }
 
-// SIGN OUT
-//
-// expected responses:
-//
-// successful: HTTP status of 204 No Content (no body)
-//
-// unsuccessful: HTTP status of 401 Unauthorized (no body)
+// SIGN OUT expected responses:
+// * successful: HTTP status of 204 No Content (no body)
+// * unsuccessful: HTTP status of 401 Unauthorized (no body)
 
 const onSignOut = function (event) {
   event.preventDefault()
