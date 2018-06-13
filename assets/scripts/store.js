@@ -1,5 +1,6 @@
 'use strict'
 
+// set starting variables for data that won't be pulled from API
 const store = {
   currentTurn: 'x',
   xWins: 0,

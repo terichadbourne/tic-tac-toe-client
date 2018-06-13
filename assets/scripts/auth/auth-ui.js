@@ -14,7 +14,6 @@ const signUpError = function (error) {
 // run on sign in success
 // (also run after successful sign-up leads to automatic sign-in, if successful)
 const signInSuccess = function (response) {
-  console.log('signInSucces response is ', response)
   // if there was a message about needing to sign in, remove it
   ui.clearMessage()
   // store data retricved from server

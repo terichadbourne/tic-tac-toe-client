@@ -25,11 +25,12 @@ const addHandlers = function () {
 // }
 // * unsuccessful, HTTP Status of 400 Bad Request (empty body)
 
+// run when sign up button is clicked
 const onSignUp = function (event) {
+  // prevent page refresh
   event.preventDefault()
-  console.log('event.target of sign-up: ', event.target)
+  // capture user credentials from form and send to server
   const data = getFormFields(event.target)
-  console.log('data in onSignUp is: ', data)
   authApi.signUp(data)
     // if signup is successful, immediately run signIn using same credentials
     .then(() => { return authApi.signIn(data) })
@@ -50,12 +51,12 @@ const onSignUp = function (event) {
 // }
 // * unsuccessful: HTTP Status of 401 Unauthorized (empty body)
 
+// run when sign in button is clicked
 const onSignIn = function (event) {
+  // prevent page refresh
   event.preventDefault()
-  console.log('clicked on sign-in button')
-  console.log('event.target of sign-in: ', event.target)
+  // capture user credentials from form and send to server
   const data = getFormFields(event.target)
-  console.log('data in onSignIn is: ', data)
   authApi.signIn(data)
     .then(authUi.signInSuccess)
     .catch(authUi.signInError)
@@ -65,12 +66,12 @@ const onSignIn = function (event) {
 // * successful: HTTP status of 204 No Content (no body)
 // * unsuccessful: HTTP status of 400 Bad Request (no body)
 
+// run when change password button is clicked
 const onChangePassword = function (event) {
+  // prevent page refresh
   event.preventDefault()
-  console.log('clicked on change password button')
-  console.log('event.target of change password: ', event.target)
+  // capture user credentials from form and send to server
   const data = getFormFields(event.target)
-  console.log('data in onChangePassword is: ', data)
   authApi.changePassword(data)
     .then(authUi.changePasswordSuccess)
     .catch(authUi.changePasswordError)
@@ -80,10 +81,11 @@ const onChangePassword = function (event) {
 // * successful: HTTP status of 204 No Content (no body)
 // * unsuccessful: HTTP status of 401 Unauthorized (no body)
 
+// run when sign out button is clicked
 const onSignOut = function (event) {
+  // prevent page refresh
   event.preventDefault()
-  console.log('clicked on sign-out button')
-  console.log('event.target of sign-out: ', event.target)
+  // send request to server
   authApi.signOut()
     .then(authUi.signOutSuccess)
     .catch(authUi.signOutError)
