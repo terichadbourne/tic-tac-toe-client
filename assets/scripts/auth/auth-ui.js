@@ -72,8 +72,10 @@ const signOutSuccess = function (response) {
   $('.game-cell').html('')
   clearAuthForms()
   ui.updateWins()
+  ui.clearMessage()
   $('#player-x-email').html('Anonymous')
   ui.hideWinningCells()
+  $('#rematch-button').addClass('hidden')
   // change which auth options are available
   $('.sign-up').removeClass('hidden')
   $('.sign-in').removeClass('hidden')
