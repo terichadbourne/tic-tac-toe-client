@@ -127,9 +127,12 @@ nav {
   background-color: $teal;
 }
 
-#game-board {
-  margin: 15px auto;
-  width: 90vw;
+#surround-game-board {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 
 #message {
@@ -175,7 +178,6 @@ nav {
   }
 
   .game-row {
-    margin: auto;
     width: 450px;
   }
 
@@ -184,11 +186,13 @@ nav {
     font-weight: bold;
   }
 
-  #game-board {
+  #surround-game-board {
     width: 60vw;
+    height: calc(100vh - 80px);
+    margin-right: 0;
   }
 
-  #game-board,
+  #surround-game-board,
   #stats-n-stuff {
     float: right;
   }
