@@ -187,7 +187,7 @@ nav {
   }
 
   #surround-game-board {
-    width: 60vw;
+    width: 62%;
     height: calc(100vh - 80px);
     margin-right: 0;
   }
@@ -203,7 +203,7 @@ nav {
 
   #stats-n-stuff {
     background-color: $teal;
-    height: 100vh;
-    width: 40vw;
+    height: calc(100vh - 80px);
+    width: 38%;
   }
 }
